@@ -1,3 +1,7 @@
 res://World/World.tscn
 res://Player/Player.tscn
 res://Player/Player.gd
+res://World/World.tscn
+res://World/Trees.gd
+res://World/Tree/Tree.tscn
+res://World/Tree/Trees.gd
