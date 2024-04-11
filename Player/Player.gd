@@ -8,7 +8,7 @@ var inventory: Array = []
 
 func _ready():
 	inventory.resize(INV_SIZE)
-	# penis cock
+	
 
 func _physics_process(delta):
 	var direction = Input.get_vector("left", "right", "up", "down").normalized()

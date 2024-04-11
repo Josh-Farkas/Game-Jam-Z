@@ -1,10 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://burikultpcsxt"]
+[gd_scene load_steps=4 format=3 uid="uid://burikultpcsxt"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_kqll7"]
 [ext_resource type="Texture2D" uid="uid://bu7t1kygcvpki" path="res://icon.svg" id="2_2lak4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kqsae"]
+radius = 65.192
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_kqll7")
 
 [node name="Icon" type="Sprite2D" parent="."]
 texture = ExtResource("2_2lak4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kqsae")

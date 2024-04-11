@@ -1,7 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://c6g5x5mcbtw30"]
+[gd_scene load_steps=3 format=3 uid="uid://c6g5x5mcbtw30"]
 
 [ext_resource type="PackedScene" uid="uid://burikultpcsxt" path="res://Player/Player.tscn" id="1_u5x5s"]
+[ext_resource type="Script" path="res://World/Tree/Trees.gd" id="2_bemed"]
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node2D" groups=["World"]]
 
 [node name="Player" parent="." instance=ExtResource("1_u5x5s")]
+
+[node name="Trees" type="Node2D" parent="."]
+script = ExtResource("2_bemed")
