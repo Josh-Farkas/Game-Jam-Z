@@ -6,23 +6,6 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_kqsae"]
 radius = 8.0
 
-[sub_resource type="Animation" id="Animation_oh6f3"]
-resource_name = "idle_up"
-length = 0.1
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Icon:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
-}
-
 [sub_resource type="Animation" id="Animation_c8sri"]
 length = 0.001
 tracks/0/type = "value"
@@ -36,23 +19,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [2]
-}
-
-[sub_resource type="Animation" id="Animation_pbmin"]
-resource_name = "idle_left"
-length = 0.1
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Icon:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_a6ge6"]
@@ -72,6 +38,23 @@ tracks/0/keys = {
 "values": [1]
 }
 
+[sub_resource type="Animation" id="Animation_pbmin"]
+resource_name = "idle_left"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_q0hxp"]
 resource_name = "idle_right"
 length = 0.1
@@ -89,9 +72,9 @@ tracks/0/keys = {
 "values": [3]
 }
 
-[sub_resource type="Animation" id="Animation_tyn05"]
-resource_name = "walk_up"
-length = 0.2
+[sub_resource type="Animation" id="Animation_oh6f3"]
+resource_name = "idle_up"
+length = 0.1
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -100,27 +83,10 @@ tracks/0/path = NodePath("Icon:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [6, 10]
-}
-
-[sub_resource type="Animation" id="Animation_mmcjm"]
-resource_name = "walk_left"
-length = 0.2
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Icon:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [4, 8]
+"values": [2]
 }
 
 [sub_resource type="Animation" id="Animation_wwb38"]
@@ -140,6 +106,23 @@ tracks/0/keys = {
 "values": [5, 9]
 }
 
+[sub_resource type="Animation" id="Animation_mmcjm"]
+resource_name = "walk_left"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 8]
+}
+
 [sub_resource type="Animation" id="Animation_fry14"]
 resource_name = "walk_right"
 length = 0.2
@@ -155,6 +138,23 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [7, 11]
+}
+
+[sub_resource type="Animation" id="Animation_tyn05"]
+resource_name = "walk_up"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [6, 10]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mwybl"]
