@@ -12,14 +12,14 @@ var direction: Vector2 = Vector2.ZERO
 
 func _ready():
 	inventory.resize(INV_SIZE)
-	animation_tree.active = true
+	#animation_tree.active = true
 
 func _physics_process(delta):
 	direction = Input.get_vector("left", "right", "up", "down").normalized()
 	velocity = direction * speed * speed_modifier
-	
+
 	move_and_slide()
-	update_animation()
+	#update_animation()
 
 func update_animation():
 	if (direction != Vector2.ZERO):
