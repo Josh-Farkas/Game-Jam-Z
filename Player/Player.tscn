@@ -1,22 +1,24 @@
 [gd_scene load_steps=4 format=3 uid="uid://burikultpcsxt"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_kqll7"]
-[ext_resource type="Texture2D" uid="uid://bu7t1kygcvpki" path="res://icon.svg" id="2_2lak4"]
+[ext_resource type="Texture2D" uid="uid://bm0lgi6tattmu" path="res://Player/Player.png" id="2_mvvfb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kqsae"]
 radius = 8.0
 
-[node name="Player" type="CharacterBody2D" groups=["Player"]]
+[node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_kqll7")
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(0, 1.90735e-06)
-scale = Vector2(0.105469, 0.105469)
-texture = ExtResource("2_2lak4")
+texture = ExtResource("2_mvvfb")
+hframes = 4
+vframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_kqsae")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
-position_smoothing_enabled = true
+zoom = Vector2(5, 5)
+
+[node name="Node2D" type="Node2D" parent="."]
