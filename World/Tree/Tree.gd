@@ -21,6 +21,10 @@ func _process(delta):
 	pass
 
 
+func _input(event):
+	if Input.is_action_just_pressed("left_click"):
+		get_hit()
+
 func get_hit() -> bool:
 	if !hovered: return false
 	health -= 1
@@ -35,6 +39,7 @@ func shake():
 func fall():
 	for n in range(randi_range(2,4)):
 		var wood := item_scn.instantiate()
+		wood.type = "Wood"
 		wood.global_position = global_position + Vector2(randi_range(-2, 2), randi_range(-2, 2))
 		world.add_child(wood)
 	
