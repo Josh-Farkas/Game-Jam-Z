@@ -13,7 +13,7 @@ func _ready():
 func _physics_process(delta):
 	var direction = Input.get_vector("left", "right", "up", "down").normalized()
 	velocity = direction * speed * speed_modifier
-	
+
 	move_and_slide()
 
 
