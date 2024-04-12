@@ -1,4 +1,6 @@
+res://World/Tree/Tree.tscn
+res://World/Tree/Tree.gd
+res://Items/Item.tscn
 res://World/World.tscn
 res://Player/Player.tscn
-res://World/Tree/Tree.tscn
-res://Player/Player.gd
+res://Items/Item.gd

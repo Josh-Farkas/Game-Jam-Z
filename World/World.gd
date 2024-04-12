@@ -7,7 +7,7 @@ var trees: Node2D = get_node("Trees")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	trees.generate_trees(MAP_SIZE, .5)
+	trees.generate_trees(MAP_SIZE)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
