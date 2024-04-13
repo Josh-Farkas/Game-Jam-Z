@@ -1,3 +1,8 @@
 res://World/World.tscn
 res://Player/Player.tscn
+res://Player/Player.gd
+res://World/Objects.gd
+res://World/Object/Object.tscn
+res://World/Object/Object.gd
+res://Enemy/Enemy.tscn
 res://World/World.gd

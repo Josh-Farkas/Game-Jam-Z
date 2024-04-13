@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://eg0ltksvqb6t"]
+
+[ext_resource type="Script" path="res://World/Object/Object.gd" id="1_o1lxx"]
+[ext_resource type="Texture2D" uid="uid://bu7t1kygcvpki" path="res://icon.svg" id="2_qd13b"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kvf02"]
+radius = 23.0217
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ujaab"]
+size = Vector2(80, 8)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_64fc2"]
+radius = 8.0
+
+[node name="Object" type="StaticBody2D" groups=["Trees"]]
+script = ExtResource("1_o1lxx")
+
+[node name="ClickArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickArea"]
+position = Vector2(0, -11)
+shape = SubResource("CircleShape2D_kvf02")
+
+[node name="Sprites" type="Node2D" parent="."]
+scale = Vector2(0.132, 1)
+
+[node name="Tree" type="Sprite2D" parent="Sprites"]
+visible = false
+position = Vector2(0, -64)
+texture = ExtResource("2_qd13b")
+
+[node name="Rock" type="Sprite2D" parent="Sprites"]
+visible = false
+position = Vector2(3.74317e-05, -10.8096)
+scale = Vector2(4.73485, 0.165974)
+texture = ExtResource("2_qd13b")
+
+[node name="CollisionShapes" type="Node2D" parent="."]
+
+[node name="Rock" type="CollisionShape2D" parent="CollisionShapes"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_ujaab")
+
+[node name="Tree" type="CollisionShape2D" parent="CollisionShapes"]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_64fc2")
+
+[connection signal="mouse_shape_entered" from="ClickArea" to="." method="_on_click_area_mouse_shape_entered"]
+[connection signal="mouse_shape_exited" from="ClickArea" to="." method="_on_click_area_mouse_shape_exited"]
