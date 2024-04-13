@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://khcqgrxr2ba5"]
+
+[node name="InventorySlot" type="Button"]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 64.0
+offset_bottom = 64.0
+focus_mode = 0
+toggle_mode = true
+icon_alignment = 1
+expand_icon = true

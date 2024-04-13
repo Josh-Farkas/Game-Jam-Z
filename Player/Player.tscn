@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://burikultpcsxt"]
+[gd_scene load_steps=29 format=3 uid="uid://burikultpcsxt"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_kqll7"]
 [ext_resource type="Texture2D" uid="uid://bm0lgi6tattmu" path="res://Player/Player.png" id="2_mvvfb"]
@@ -239,6 +239,9 @@ states/walk/node = SubResource("AnimationNodeBlendSpace2D_0ycew")
 states/walk/position = Vector2(438, 100)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_i2b20"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_4vi23"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_v001y")]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_b4vcm"]
+radius = 4.0
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_kqll7")
 
@@ -253,7 +256,7 @@ frame = 1
 shape = SubResource("CircleShape2D_kqsae")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(5, 5)
+zoom = Vector2(2.5, 2.5)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -270,3 +273,32 @@ parameters/conditions/idle = false
 parameters/conditions/walk = false
 parameters/idle/blend_position = Vector2(0, 0)
 parameters/walk/blend_position = Vector2(-0.0128, 1.02414)
+
+[node name="PickupRange" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupRange"]
+shape = SubResource("CircleShape2D_b4vcm")
+
+[node name="Control" type="CanvasLayer" parent="."]
+follow_viewport_scale = 2.5
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -32.0
+offset_right = 160.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_bottom = 16
+
+[node name="Inventory" type="HBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+
+[connection signal="body_entered" from="PickupRange" to="." method="_on_pickup_range_body_entered"]

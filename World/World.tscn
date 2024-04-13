@@ -15,3 +15,12 @@ script = ExtResource("2_bemed")
 
 [node name="Item" parent="." instance=ExtResource("4_p2har")]
 position = Vector2(49, 2)
+
+[node name="Item2" parent="." instance=ExtResource("4_p2har")]
+position = Vector2(88, 56)
+
+[node name="Item3" parent="." instance=ExtResource("4_p2har")]
+position = Vector2(164, -23)
+
+[node name="Item4" parent="." instance=ExtResource("4_p2har")]
+position = Vector2(201, 68)
