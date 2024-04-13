@@ -12,6 +12,7 @@ var player: CharacterBody2D = $Player
 func _ready():
 	objects.generate_objects(MAP_SIZE)
 	player.position = MAP_SIZE / 2
+	$Objects/Campfire.position = MAP_SIZE / 2 + Vector2.DOWN * 20
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

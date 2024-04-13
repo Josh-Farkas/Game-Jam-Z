@@ -26,11 +26,15 @@ scale = Vector2(0.132, 1)
 
 [node name="Tree" type="Sprite2D" parent="Sprites"]
 visible = false
+modulate = Color(0.360784, 0.172549, 0, 1)
+y_sort_enabled = true
 position = Vector2(0, -64)
 texture = ExtResource("2_qd13b")
 
 [node name="Rock" type="Sprite2D" parent="Sprites"]
 visible = false
+modulate = Color(0.482353, 0.372549, 0.290196, 1)
+y_sort_enabled = true
 position = Vector2(3.74317e-05, -10.8096)
 scale = Vector2(4.73485, 0.165974)
 texture = ExtResource("2_qd13b")
