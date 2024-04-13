@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var inventory_gui: HBoxContainer = $Control/MarginContainer/Inventory
 
-const INV_SIZE = 10
+const INV_SIZE = 4
 
 @export var speed = 100
 var speed_modifier: int = 1
@@ -55,11 +55,13 @@ func _on_pickup_range_body_entered(body):
 			if inventory[slot] == null: 
 				inventory[slot] = body
 				inventory_gui.get_child(slot).icon = body.item_types[body.type]["Sprite"]
+				inventory_gui.get_child(slot).get_child(0).text = str(body.amount) if body.amount > 1 else ""
 				body.get_parent().remove_child(body)
 				return
 			else:
 				var amount_to_fill = inventory[slot].max_stack - inventory[slot].amount
 				inventory[slot].change_amount(min(body.amount, amount_to_fill))
+				inventory_gui.get_child(slot).get_child(0).text = str(inventory[slot].amount) if inventory[slot].amount > 1 else ""
 				body.change_amount(-amount_to_fill)
 	
 	body.get_parent().remove_child(body)

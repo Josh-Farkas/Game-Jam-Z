@@ -1,4 +1,10 @@
-[gd_scene format=3 uid="uid://khcqgrxr2ba5"]
+[gd_scene load_steps=2 format=3 uid="uid://khcqgrxr2ba5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gchoh"]
+line_spacing = 0.0
+font_size = 24
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
 
 [node name="InventorySlot" type="Button"]
 custom_minimum_size = Vector2(64, 64)
@@ -8,3 +14,14 @@ focus_mode = 0
 toggle_mode = true
 icon_alignment = 1
 expand_icon = true
+
+[node name="StackLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = -34.0
+offset_right = 34.0
+grow_vertical = 0
+label_settings = SubResource("LabelSettings_gchoh")

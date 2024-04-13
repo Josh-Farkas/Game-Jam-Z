@@ -1,4 +1,5 @@
 MarginContainer
+Label
 CanvasLayer
 Control
 Button
@@ -11,5 +12,3 @@ Area2D
 AnimationTree
 AnimationPlayer
 Node2D
-SkeletonIK3D
-Camera2D

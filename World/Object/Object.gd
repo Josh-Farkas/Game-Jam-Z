@@ -56,7 +56,7 @@ func _input(event):
 func get_hit() -> bool:
 	if !hovered: return false
 	health -= 1
-	print(health)
+	# print(health)
 	if health == 0:
 		die()
 	return true

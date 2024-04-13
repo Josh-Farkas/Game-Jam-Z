@@ -27,4 +27,3 @@ position = Vector2(685, 359)
 
 [node name="Item4" parent="." instance=ExtResource("4_p2har")]
 position = Vector2(519, 339)
-amount = 3

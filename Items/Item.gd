@@ -4,16 +4,16 @@ class_name Item
 @onready
 var item_types: Dictionary = {
 	"Wood": {
-		"Sprite": preload("res://icon.svg"),
-		"MaxStack": 99
+		"Sprite": preload("res://Items/Wood.png"),
+		"MaxStack": 3
 	},
 	"Stone": {
-		"Sprite": preload("res://icon.svg"),
-		"MaxStack": 99
+		"Sprite": preload("res://Items/Stone.png"),
+		"MaxStack": 3
 	},
 	"Axe": {
 		"Sprite": preload("res://Items/Axe.png"),
-		"MaxStack": 3
+		"MaxStack": 1
 	},
 	"BattleAxe": {
 		"Sprite": preload("res://Items/BattleAxe.png"),
@@ -50,7 +50,6 @@ var player_in_range: bool = false
 var speed = 100
 
 var max_stack = 0
-@export
 var amount = 1
 
 # Called when the node enters the scene tree for the first time.
@@ -63,7 +62,7 @@ func set_type(name: String) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if player_in_range && player.inventory.find(null) != -1:
+	if player_in_range and (player.inventory.map(func(x: Item): return x.type if x != null and x.amount != x.max_stack else null).find(type) != -1 or player.inventory.find(null) != -1):
 		position += global_position.direction_to(player.global_position) * speed * delta
 
 
