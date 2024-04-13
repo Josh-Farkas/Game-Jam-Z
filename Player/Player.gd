@@ -45,12 +45,24 @@ func update_animation():
 
 
 func _on_pickup_range_body_entered(body):
-	var next_free_slot = inventory.find(null)
+	if not body is Item: return
 	
-	if (body is Item && next_free_slot != -1):
-		body.get_parent().remove_child(body)
-		inventory[next_free_slot] = body
-		inventory_gui.get_child(next_free_slot).icon = body.item_types[body.type]["Sprite"]
+	while body.amount > 0:
+		var slot: int = inventory.map(func(x: Item): return x.type if x != null and x.amount != x.max_stack else null).find(body.type)
+		if slot == -1: slot = inventory.find(null)
+		
+		if (slot != -1):
+			if inventory[slot] == null: 
+				inventory[slot] = body
+				inventory_gui.get_child(slot).icon = body.item_types[body.type]["Sprite"]
+				body.get_parent().remove_child(body)
+				return
+			else:
+				var amount_to_fill = inventory[slot].max_stack - inventory[slot].amount
+				inventory[slot].change_amount(min(body.amount, amount_to_fill))
+				body.change_amount(-amount_to_fill)
+	
+	body.get_parent().remove_child(body)
 
 func set_current_slot(slot):
 	current_slot = slot

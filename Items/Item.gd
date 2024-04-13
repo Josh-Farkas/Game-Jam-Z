@@ -13,7 +13,7 @@ var item_types: Dictionary = {
 	},
 	"Axe": {
 		"Sprite": preload("res://Items/Axe.png"),
-		"MaxStack": 1
+		"MaxStack": 3
 	},
 	"BattleAxe": {
 		"Sprite": preload("res://Items/BattleAxe.png"),
@@ -50,6 +50,7 @@ var player_in_range: bool = false
 var speed = 100
 
 var max_stack = 0
+@export
 var amount = 1
 
 # Called when the node enters the scene tree for the first time.
@@ -77,3 +78,6 @@ func _on_pickup_area_body_exited(body):
 
 func set_amount(new_amount):
 	amount = new_amount
+
+func change_amount(delta: int):
+	set_amount(amount + delta)

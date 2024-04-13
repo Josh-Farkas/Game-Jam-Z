@@ -17,13 +17,14 @@ script = ExtResource("2_bemed")
 [node name="Campfire" parent="Objects" instance=ExtResource("4_pc6qk")]
 
 [node name="Item" parent="." instance=ExtResource("4_p2har")]
-position = Vector2(49, 2)
+position = Vector2(555, 457)
 
 [node name="Item2" parent="." instance=ExtResource("4_p2har")]
-position = Vector2(88, 56)
+position = Vector2(651, 447)
 
 [node name="Item3" parent="." instance=ExtResource("4_p2har")]
-position = Vector2(164, -23)
+position = Vector2(685, 359)
 
 [node name="Item4" parent="." instance=ExtResource("4_p2har")]
-position = Vector2(201, 68)
+position = Vector2(519, 339)
+amount = 3

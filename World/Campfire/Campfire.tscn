@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://World/Campfire/Campfire.gd" id="1_8smp4"]
 [ext_resource type="Texture2D" uid="uid://bu7t1kygcvpki" path="res://icon.svg" id="2_rb83i"]
-[ext_resource type="Texture2D" uid="uid://dbkanegqm3qo6" path="res://World/Campfire/Light.jpg" id="3_tijdb"]
+[ext_resource type="Texture2D" uid="uid://dbkanegqm3qo6" path="res://World/Campfire/light.jpg" id="3_tijdb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8tcik"]
 size = Vector2(28, 6)
