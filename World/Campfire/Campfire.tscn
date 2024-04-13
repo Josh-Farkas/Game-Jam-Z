@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://cgbg3akvy8peg"]
 
-[ext_resource type="Script" path="res://Campfire/Campfire.gd" id="1_8smp4"]
+[ext_resource type="Script" path="res://World/Campfire/Campfire.gd" id="1_8smp4"]
 [ext_resource type="Texture2D" uid="uid://bu7t1kygcvpki" path="res://icon.svg" id="2_rb83i"]
-[ext_resource type="Texture2D" uid="uid://dl5vnqj0ktbc3" path="res://Campfire/Light.jpg" id="3_tijdb"]
+[ext_resource type="Texture2D" uid="uid://dbkanegqm3qo6" path="res://World/Campfire/Light.jpg" id="3_tijdb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8tcik"]
 size = Vector2(28, 6)
@@ -31,6 +31,8 @@ position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_rekaf")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(1.5, 1.5)
+color = Color(1, 0.215686, 0.0392157, 1)
 energy = 100.0
 texture = ExtResource("3_tijdb")
 

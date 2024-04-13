@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://burikultpcsxt" path="res://Player/Player.tscn" id="1_u5x5s"]
 [ext_resource type="Script" path="res://World/Objects.gd" id="2_bemed"]
 [ext_resource type="PackedScene" uid="uid://bm5g71pmk2l0t" path="res://Items/Item.tscn" id="4_p2har"]
-[ext_resource type="PackedScene" uid="uid://cgbg3akvy8peg" path="res://Campfire/Campfire.tscn" id="4_pc6qk"]
+[ext_resource type="PackedScene" uid="uid://cgbg3akvy8peg" path="res://World/Campfire/Campfire.tscn" id="4_pc6qk"]
 
 [node name="World" type="Node2D" groups=["World"]]
 script = ExtResource("1_rmncd")
