@@ -5,11 +5,11 @@ class_name Item
 var item_types: Dictionary = {
 	"Wood": {
 		"Sprite": preload("res://Items/Wood.png"),
-		"MaxStack": 3
+		"MaxStack": 20
 	},
 	"Stone": {
 		"Sprite": preload("res://Items/Stone.png"),
-		"MaxStack": 3
+		"MaxStack": 20
 	},
 	"Axe": {
 		"Sprite": preload("res://Items/Axe.png"),

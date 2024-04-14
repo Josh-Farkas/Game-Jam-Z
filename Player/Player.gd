@@ -2,8 +2,9 @@ extends CharacterBody2D
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var inventory_gui: HBoxContainer = $Control/MarginContainer/Inventory
+@onready var healthbar: TextureProgressBar = $Control/HealthBar
 
-const INV_SIZE = 4
+const INV_SIZE = 10
 
 @export var speed = 100
 var speed_modifier: int = 1
@@ -13,13 +14,16 @@ var direction: Vector2 = Vector2.ZERO
 
 var current_slot: int
 
+var health: int = 100
+
 func _ready():
 	animation_tree.active = true
 	inventory.resize(INV_SIZE)
+	healthbar.value = health
 	
 	for i in INV_SIZE:
 		var slot = preload("res://UI/inventory_slot.tscn").instantiate()
-		slot.button_group = preload("res://Player/InventorySlotButtonGroup.tres")
+		slot.button_group = preload("res://UI/InventorySlotButtonGroup.tres")
 		inventory_gui.add_child(slot)
 	
 	set_current_slot(0)

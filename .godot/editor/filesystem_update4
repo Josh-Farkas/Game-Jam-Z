@@ -3,6 +3,4 @@ res://Player/Player.tscn
 res://Items/Item.tscn
 res://UI/inventory_slot.tscn
 res://World/Campfire/Campfire.tscn
-res://Items/Item.gd
 res://Player/Player.gd
-res://World/Object/Object.gd
