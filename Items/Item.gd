@@ -1,14 +1,12 @@
 extends StaticBody2D
 class_name Item
 
-@onready
-var item_types: Dictionary = {
+static var item_types: Dictionary = {
 	"Wood": {
 		"Sprite": preload("res://Items/Wood.png"),
 		"MaxStack": 99,
 		"Action": "Place",
-		"PlaceableObject": preload("res://World/Campfire/Campfire.tscn"),
-		"TileSetID": 0,
+		"PlaceableObject": Vector2(1, 3),
 	},
 	"Stone": {
 		"Sprite": preload("res://Items/Stone.png"),
@@ -17,8 +15,15 @@ var item_types: Dictionary = {
 	},
 	"Axe": {
 		"Sprite": preload("res://Items/Axe.png"),
-		"MaxStack": 3,
-		"Action": "Attack",
+		"MaxStack": 1,
+		"Action": "Destroy",
+		"ToolType": "Axe",
+	},
+	"Pickaxe": {
+		"Sprite": preload("res://Items/Axe.png"),
+		"MaxStack": 1,
+		"Action": "Destroy",
+		"ToolType": "Pickaxe",
 	},
 	"BattleAxe": {
 		"Sprite": preload("res://Items/BattleAxe.png"),
@@ -52,32 +57,37 @@ var item_types: Dictionary = {
 	},
 }
 
-var type = "Axe"
-var placeable_obj: PackedScene = null
-var action: String = ""
-var tileset_id = -1
-
 @onready
 var player: CharacterBody2D = get_tree().get_first_node_in_group("Player")
+
+@export_category("Item Info")
+@export var type = "Axe"
+@export var amount = 1
+var action: String = ""
+var max_stack: int = 0
+var tooltype: String = ""
+
 
 var player_in_range: bool = false
 var speed = 100
 
-var max_stack = 0
-var amount = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_type(type)
+	set_amount(amount)
 
 func set_type(name: String) -> void:
 	var type: Dictionary = item_types[name]
 	$Sprite2D.texture = type.Sprite
 	max_stack = type.MaxStack
 	action = type.Action
-	if type.get("PlaceableObject") != null:
-		placeable_obj = type.PlaceableObject
-		tileset_id = type.TileSetID
+	#if type.get("PlaceableObject") != null:
+		#placeable_obj = type.PlaceableObject
+		#tileset_id = type.TileSetID
+	if type.get("ToolType") != null:
+		tooltype = type.ToolType
+	
 		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

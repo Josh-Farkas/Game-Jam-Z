@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://c6g5x5mcbtw30"]
+[gd_scene load_steps=10 format=3 uid="uid://c6g5x5mcbtw30"]
 
 [ext_resource type="Script" path="res://World/World.gd" id="1_rmncd"]
 [ext_resource type="PackedScene" uid="uid://burikultpcsxt" path="res://Player/Player.tscn" id="1_u5x5s"]
 [ext_resource type="Texture2D" uid="uid://bchpat4hksak6" path="res://World/tilemap_1.png" id="3_6lex6"]
 [ext_resource type="PackedScene" uid="uid://cgbg3akvy8peg" path="res://World/Campfire/Campfire.tscn" id="4_pc6qk"]
+[ext_resource type="PackedScene" uid="uid://bm5g71pmk2l0t" path="res://Items/Item.tscn" id="5_cwolc"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_njlxe"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -34,19 +35,31 @@ separation = Vector2i(1, 1)
 0:1/0/physics_layer_0/angular_velocity = 0.0
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:1/0/custom_data_0 = "Break"
+0:1/0/custom_data_1 = "Rock"
+0:1/0/custom_data_2 = [1, 2]
+0:1/0/custom_data_3 = "Pickaxe"
 2:1/0 = 0
 2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:1/0/physics_layer_0/angular_velocity = 0.0
 2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:1/0/custom_data_0 = "Break"
+2:1/0/custom_data_1 = "Wood"
+2:1/0/custom_data_2 = [2, 4]
+2:1/0/custom_data_3 = "Axe"
 0:2/0 = 0
 0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:2/0/physics_layer_0/angular_velocity = 0.0
 0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:2/0/custom_data_1 = "Wood"
+0:2/0/custom_data_2 = [1, 1]
+0:2/0/custom_data_3 = "Axe"
 1:2/0 = 0
 1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:2/0/physics_layer_0/angular_velocity = 0.0
 1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:2/0/custom_data_1 = "Wood"
+1:2/0/custom_data_2 = [1, 2]
+1:2/0/custom_data_3 = "Axe"
 2:2/0 = 0
 2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:2/0/physics_layer_0/angular_velocity = 0.0
@@ -56,6 +69,9 @@ separation = Vector2i(1, 1)
 3:1/0/physics_layer_0/angular_velocity = 0.0
 3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:1/0/custom_data_0 = "Craft"
+3:1/0/custom_data_1 = "Anvil"
+3:1/0/custom_data_2 = [1, 1]
+3:1/0/custom_data_3 = "Pickaxe"
 3:2/0 = 0
 3:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:2/0/physics_layer_0/angular_velocity = 0.0
@@ -72,12 +88,21 @@ separation = Vector2i(1, 1)
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_gkh7r")
 1:0/0/custom_data_0 = "Break"
+1:0/0/custom_data_1 = "Wood"
+1:0/0/custom_data_2 = [2, 4]
+1:0/0/custom_data_3 = "Axe"
 
 [sub_resource type="TileSet" id="TileSet_jiqsf"]
 physics_layer_0/collision_layer = 1
 navigation_layer_0/layers = 1
 custom_data_layer_0/name = "ClickAction"
 custom_data_layer_0/type = 4
+custom_data_layer_1/name = "Drops"
+custom_data_layer_1/type = 4
+custom_data_layer_2/name = "DropAmount"
+custom_data_layer_2/type = 28
+custom_data_layer_3/name = "ToolType"
+custom_data_layer_3/type = 4
 sources/0 = SubResource("TileSetAtlasSource_shbi4")
 
 [node name="World" type="Node2D" groups=["World"]]
@@ -100,3 +125,6 @@ layer_2/z_index = 1
 layer_2/tile_data = PackedInt32Array()
 
 [node name="Campfire" parent="." instance=ExtResource("4_pc6qk")]
+
+[node name="Item" parent="." instance=ExtResource("5_cwolc")]
+position = Vector2(767, 791)

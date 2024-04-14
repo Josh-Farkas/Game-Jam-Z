@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @onready var world: Node2D = get_tree().get_first_node_in_group("World")
 @onready var tilemap: TileMap = world.get_node("TileMap")
@@ -8,6 +9,7 @@ extends CharacterBody2D
 
 const INV_SIZE = 10
 const PLACE_RANGE = 100
+const TOOL_USE_RANGE = 50
 
 @export var speed = 100
 var speed_modifier: int = 1
@@ -31,6 +33,7 @@ func _ready():
 	
 	set_current_slot(0)
 
+
 func _physics_process(delta):
 	direction = Input.get_vector("left", "right", "up", "down").normalized()
 	velocity = direction * speed * speed_modifier
@@ -42,40 +45,54 @@ func _physics_process(delta):
 
 func _input(event):
 	if Input.is_action_just_pressed("left_click"):
-		if inventory[current_slot] != null and inventory[current_slot].action != "None":
+		if inventory[current_slot] != null:
 			use_item(inventory[current_slot])
-		else:
-			match get_hovered_cell_data().get_custom_data("ClickAction"):
-				"Break": pass
+	
+	if Input.is_action_just_pressed("right_click"):
+		match get_hovered_cell_data("ClickAction"):
+			"Fuel": pass
+			"Break": pass
 				
 
 func use_item(item: Item) -> void:
+	print("Using ", item)
 	match item.action:
 		"Attack": attack(item)
+		"Destroy": destroy(item)
 		"Place": place(item)
-	
+		"None": pass
+
+func destroy(item: Item):
+	if global_position.distance_to(get_global_mouse_position()) > TOOL_USE_RANGE: return
+	if get_hovered_cell_data("ToolType") == null: return
+	if item.tooltype == get_hovered_cell_data("ToolType") or get_hovered_cell_data("ToolType") == "Any":
+		world.destroy(get_tilemap_mouse_position())
 
 func attack(item: Item) -> void:
 	pass
 	
 func place(item: Item) -> void:
 	if global_position.distance_to(get_global_mouse_position()) > PLACE_RANGE: return
-	var cell_data := get_hovered_cell_data()
-	if not cell_data.get_custom_data("placeable"): return
-	
-	tilemap.set_cell(1, tilemap.local_to_map(tilemap.get_local_mouse_position()), item.tileset_id)
-	
-	inventory[current_slot].amount -= 1
-	if inventory[current_slot].amount <= 0:
-		inventory[current_slot].queue_free()
-		inventory_gui.get_child(current_slot).icon = null
-		inventory[current_slot] = null
+	#var cell_data := get_hovered_cell_data("placeable")
+	#if not cell_data.get_custom_data("placeable"): return
+	#
+	#tilemap.set_cell(1, get_tilemap_mouse_position(), item.tileset_pos)
+	#
+	#inventory[current_slot].amount -= 1
+	#if inventory[current_slot].amount <= 0:
+		#inventory[current_slot].queue_free()
+		#inventory_gui.get_child(current_slot).icon = null
+		#inventory[current_slot] = null
+
+func get_tilemap_mouse_position():
+	return tilemap.local_to_map(tilemap.get_local_mouse_position())
 
 
-func get_hovered_cell_data() -> TileData:
-	var clicked_cell = tilemap.local_to_map(tilemap.get_local_mouse_position())
-	var data: TileData = tilemap.get_cell_tile_data(0, clicked_cell)
-	return data
+func get_hovered_cell_data(layer_name) -> Variant:
+	var tile := tilemap.get_cell_tile_data(1, get_tilemap_mouse_position())
+	if tile != null:
+		return tile.get_custom_data(layer_name)
+	return null
 
 
 func update_animation() -> void:

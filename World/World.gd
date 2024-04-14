@@ -11,8 +11,9 @@ const TILEMAP_COORDS := {
 	"Select": Vector2(0, 3),
 }
 
-@onready var tilemap: TileMap = $TileMap
+var item_scn = preload("res://Items/Item.tscn")
 
+@onready var tilemap: TileMap = $TileMap
 @onready var player: CharacterBody2D = $Player
 
 var selection_coords = Vector2i.ZERO
@@ -27,21 +28,29 @@ func _ready():
 	$Campfire.position = MAP_SIZE/2
 	
 
-func _input(event):
-	if event is InputEventMouseMotion:
-		var coords = tilemap.local_to_map(get_local_mouse_position())
-		if coords != selection_coords:
-			tilemap.erase_cell(2, selection_coords)
-			tilemap.set_cell(2, coords, 0, TILEMAP_COORDS.Select)
-			selection_coords = coords
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	var coords = tilemap.local_to_map(get_local_mouse_position())
+	if coords != selection_coords:
+		tilemap.erase_cell(2, selection_coords)
+		tilemap.set_cell(2, coords, 0, TILEMAP_COORDS.Select)
+		selection_coords = coords
 
+
+func destroy(tile_pos: Vector2i):
+	var data := tilemap.get_cell_tile_data(1, tile_pos)
+	tilemap.erase_cell(1, tile_pos)
+	var item: Item = item_scn.instantiate()
+	item.type = data.get_custom_data("Drops")
+	item.set_amount(randi_range(data.get_custom_data("DropAmount")[0], data.get_custom_data("DropAmount")[1]))
+	drop_item(item, tilemap.map_to_local(tile_pos))
+
+
+func drop_item(item: Item, pos: Vector2):
+	item.position = pos
+	add_child(item)
 
 func spawn_obj(tile_coords: Vector2, pos: Vector2):
-	print('obj spawned')
 	tilemap.set_cell(1, tilemap.local_to_map(pos), 0, tile_coords)
 
 
