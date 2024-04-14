@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://World/Campfire/Campfire.gd" id="1_8smp4"]
 [ext_resource type="Texture2D" uid="uid://dbkanegqm3qo6" path="res://World/Campfire/light.jpg" id="3_tijdb"]
 
-[node name="Campfire" type="Node2D"]
+[node name="Campfire" type="Node2D" groups=["Campfire"]]
 script = ExtResource("1_8smp4")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]

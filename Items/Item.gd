@@ -6,6 +6,7 @@ static var item_types: Dictionary = {
 		"Sprite": preload("res://Items/Wood.png"),
 		"MaxStack": 20,
 		"Action": "None",
+		"Fuel": 10,
 	},
 	"Stone": {
 		"Sprite": preload("res://Items/Stone.png"),
@@ -16,11 +17,23 @@ static var item_types: Dictionary = {
 		"Sprite": preload("res://Items/Coal.png"),
 		"MaxStack": 20,
 		"Action": "None",
+		"Fuel": 25,
 	},
-	"Fiber": {
-		"Sprite": preload("res://Items/Wood.png"),
+	"Iron": {
+		"Sprite": preload("res://Items/Coal.png"),
 		"MaxStack": 20,
 		"Action": "None",
+	},
+	"Uranium": {
+		"Sprite": preload("res://Items/Coal.png"),
+		"MaxStack": 20,
+		"Action": "None",
+	},
+	"Fiber": {
+		"Sprite": preload("res://Items/Fiber.png"),
+		"MaxStack": 20,
+		"Action": "None",
+		"Fuel": 2,
 	},
 	"Anvil": {
 		"Sprite": preload("res://Items/Anvil.png"),
@@ -28,11 +41,30 @@ static var item_types: Dictionary = {
 		"Action": "Place",
 		"TilePos": Vector2i(3, 1)
 	},
+	"Furnace": {
+		"Sprite": preload("res://Items/Anvil.png"),
+		"MaxStack": 1,
+		"Action": "Place",
+		"TilePos": Vector2i(6, 0)
+	},
 	"Campfire": {
 		"Sprite": preload("res://Items/Campfire.png"),
 		"MaxStack": 1,
 		"Action": "Place",
 		"TilePos": Vector2i(0, 4)
+	},
+	"Spike": {
+		"Sprite": preload("res://Items/Spike.png"),
+		"MaxStack": 1,
+		"Action": "Place",
+		"TilePos": Vector2i(5, 1)
+	},
+	"Bridge": {
+		"Sprite": preload("res://Items/Bridge.png"),
+		"MaxStack": 10,
+		"Action": "Place",
+		"TilePos": Vector2i(3, 2),
+		"PlaceableOnWater": true,
 	},
 	"Axe": {
 		"Sprite": preload("res://Items/Axe.png"),
@@ -88,6 +120,8 @@ var action: String = ""
 var max_stack: int = 0
 var tooltype: String = ""
 var tile_pos: Vector2i = Vector2i(-1, -1)
+var fuel_amount: int = 0
+var placeable_on_water: bool = false
 
 var player_in_range: bool = false
 var speed = 80
@@ -107,6 +141,10 @@ func set_type(name: String) -> void:
 		tile_pos = type.TilePos
 	if type.get("ToolType") != null:
 		tooltype = type.ToolType
+	if type.get("Fuel") != null:
+		fuel_amount = type.Fuel
+	if type.get("PlaceableOnWater") != null:
+		placeable_on_water = type.PlaceableOnWater
 	
 		
 

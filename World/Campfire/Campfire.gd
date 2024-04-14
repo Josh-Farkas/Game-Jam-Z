@@ -1,9 +1,10 @@
 extends Node2D
+class_name Campfire
 
 var colliding: bool = false
 
 var max_fuel: float = 100.0
-var fuel: float = 25.0
+var fuel: float = 0
 var fuel_loss_rate: int = .5 # per second
 
 var hovered: bool = false
@@ -14,7 +15,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	fuel -= fuel_loss_rate * delta
+	if fuel > 0:
+		fuel -= fuel_loss_rate * delta
+		fuel = max(0, fuel)
 	$PointLight2D.energy = fuel / 100
 
 func add_fuel(amount):

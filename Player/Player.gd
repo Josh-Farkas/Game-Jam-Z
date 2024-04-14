@@ -55,7 +55,8 @@ func _input(event):
 		
 	if Input.is_action_just_pressed("right_click"):
 		match get_hovered_cell_data("ClickAction"):
-			"Fuel": pass
+			"Fuel": fuel()
+			"Craft": pass
 			"Break": pass
 
 	if Input.is_action_just_released("scroll_up") and scroll_timer.is_stopped():
@@ -91,15 +92,36 @@ func place(item: Item) -> bool:
 	if global_position.distance_to(get_global_mouse_position()) > PLACE_RANGE \
 	or tilemap.get_cell_tile_data(1, get_tilemap_mouse_position()) != null: return false
 	
-	tilemap.set_cell(1, get_tilemap_mouse_position(), 0, item.tile_pos)
-	tilemap.set_cell(0, get_tilemap_mouse_position(), 0, Vector2.ZERO, 1)
+	if item.placeable_on_water:
+		if tilemap.get_cell_tile_data(0, get_tilemap_mouse_position()).get_custom_data("IsWater"):
+			tilemap.set_cell(1, get_tilemap_mouse_position(), 0, item.tile_pos)
+			tilemap.set_cell(0, get_tilemap_mouse_position(), 0, Vector2i(3, 0), 1)
+		else: return false
 	
-	inventory[current_slot].amount -= 1
-	if inventory[current_slot].amount <= 0:
-		inventory[current_slot].queue_free()
-		inventory_gui.get_child(current_slot).icon = null
-		inventory[current_slot] = null
+	else:
+		if not tilemap.get_cell_tile_data(0, get_tilemap_mouse_position()).get_custom_data("IsWater"):
+			tilemap.set_cell(1, get_tilemap_mouse_position(), 0, item.tile_pos)
+			tilemap.set_cell(0, get_tilemap_mouse_position(), 0, Vector2.ZERO, 1)
+		else: return false
+	
+	if item.type == "Campfire":
+		var campfire: Campfire = load("res://World/Campfire/Campfire.tscn").instantiate()
+		campfire.global_position = tilemap.map_to_local(get_tilemap_mouse_position())
+		world.add_child(campfire)
+	
+	remove_item_from_inv(current_slot, 1)
 	return true
+
+
+func fuel():
+	if inventory[current_slot] == null or inventory[current_slot].fuel_amount == 0: return
+	print('a')
+	var campfire: Campfire = get_tree().get_nodes_in_group("Campfire").reduce(
+		func(x: Campfire, val: Campfire): return x if global_position.distance_squared_to(x.global_position) < global_position.distance_squared_to(val.global_position) else val)
+	campfire.add_fuel(inventory[current_slot].fuel_amount)
+	remove_item_from_inv(current_slot, 1)
+	#get_tilemap_mouse_position()
+
 
 func get_tilemap_mouse_position():
 	return tilemap.local_to_map(tilemap.get_local_mouse_position())
@@ -151,6 +173,12 @@ func set_current_slot(slot) -> void:
 	current_slot = slot
 	inventory_gui.get_child(slot).button_pressed = true
 
+func remove_item_from_inv(slot, amount) -> void:
+	inventory[slot].change_amount(-1)
+	if inventory[slot].amount <= 0:
+		inventory[slot].queue_free()
+		inventory_gui.get_child(slot).icon = null
+		inventory[slot] = null
 
 func _on_destroy_timer_timeout():
 	world.destroy(get_tilemap_mouse_position())
