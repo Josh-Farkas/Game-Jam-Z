@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_kqll7"]
 [ext_resource type="Texture2D" uid="uid://bm0lgi6tattmu" path="res://Player/Player.png" id="2_mvvfb"]
-[ext_resource type="Texture2D" uid="uid://c2x18lnurgysb" path="res://UI/HealthBarEmpty.png" id="3_cp1gc"]
-[ext_resource type="Texture2D" uid="uid://dslfjp5u74nhu" path="res://UI/HealthBarFull.png" id="4_5ojiy"]
+[ext_resource type="Texture2D" uid="uid://bfxab456xhfbh" path="res://UI/HealthBarEmpty.png" id="3_cp1gc"]
+[ext_resource type="Texture2D" uid="uid://b8fi061eplwbr" path="res://UI/HealthBarFull.png" id="4_5ojiy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_er2f2"]
 size = Vector2(13, 14)
@@ -304,16 +304,18 @@ theme_override_constants/margin_bottom = 16
 [node name="Inventory" type="HBoxContainer" parent="Control/MarginContainer"]
 layout_mode = 2
 
-[node name="HealthBar" type="TextureProgressBar" parent="Control"]
+[node name="MarginContainer2" type="MarginContainer" parent="Control"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -411.0
-offset_top = 16.0
-offset_right = -253.0
-offset_bottom = 28.0
+offset_left = -332.0
+offset_bottom = 40.0
 grow_horizontal = 0
-scale = Vector2(2.5, 2.5)
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+
+[node name="HealthBar" type="TextureProgressBar" parent="Control/MarginContainer2"]
+layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 rounded = true

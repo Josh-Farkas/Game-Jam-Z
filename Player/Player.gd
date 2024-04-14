@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var tilemap: TileMap = world.get_node("TileMap")
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var inventory_gui: HBoxContainer = $Control/MarginContainer/Inventory
-@onready var healthbar: TextureProgressBar = $Control/HealthBar
+@onready var healthbar: TextureProgressBar = $Control/MarginContainer2/HealthBar
 
 const INV_SIZE = 10
 const PLACE_RANGE = 100
@@ -47,7 +47,11 @@ func _input(event):
 		else:
 			match get_hovered_cell_data().get_custom_data("ClickAction"):
 				"Break": pass
-				
+	
+	if Input.is_action_just_released("scroll_up"):
+		set_current_slot(current_slot - 1 if current_slot > 0 else INV_SIZE - 1)
+	if Input.is_action_just_released("scroll_down"):
+		set_current_slot(current_slot + 1 if current_slot < INV_SIZE - 1 else 0)
 
 func use_item(item: Item) -> void:
 	match item.action:
@@ -115,4 +119,4 @@ func _on_pickup_range_body_entered(body) -> void:
 
 func set_current_slot(slot) -> void:
 	current_slot = slot
-	inventory_gui.get_child(0).button_pressed = true
+	inventory_gui.get_child(slot).button_pressed = true
