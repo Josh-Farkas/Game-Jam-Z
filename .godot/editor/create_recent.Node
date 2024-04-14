@@ -1,9 +1,9 @@
-MarginContainer
+Timer
 Node2D
 TileMap
 CollisionShape2D
 Area2D
-Timer
+MarginContainer
 TextureProgressBar
 Label
 CanvasLayer

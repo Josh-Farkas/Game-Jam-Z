@@ -6,6 +6,7 @@ class_name Player
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var inventory_gui: HBoxContainer = $Control/MarginContainer/Inventory
 @onready var healthbar: TextureProgressBar = $Control/MarginContainer2/HealthBar
+@onready var destroy_timer: Timer = $DestroyTimer
 
 const INV_SIZE = 10
 const PLACE_RANGE = 100
@@ -13,13 +14,15 @@ const TOOL_USE_RANGE = 50
 
 @export var speed = 100
 var speed_modifier: int = 1
-var inventory: Array = []
-
 var direction: Vector2 = Vector2.ZERO
 
+var inventory: Array = []
 var current_slot: int
 
 var health: int = 100
+
+var destroying_tile_pos: Vector2i = Vector2i.ZERO
+
 
 func _ready():
 	animation_tree.active = true
@@ -37,11 +40,13 @@ func _ready():
 func _physics_process(delta):
 	direction = Input.get_vector("left", "right", "up", "down").normalized()
 	velocity = direction * speed * speed_modifier
+	
+	if not destroy_timer.is_stopped() and get_tilemap_mouse_position() != destroying_tile_pos and Input.is_action_pressed("left_click"):
+		destroy_timer.stop()
 
 	move_and_slide()
 	update_animation()
-		
-		
+	
 
 func _input(event):
 	if Input.is_action_just_pressed("left_click"):
@@ -64,7 +69,7 @@ func _input(event):
 				
 
 func use_item(item: Item) -> void:
-	print("Using ", item)
+	print("Using: ", item)
 	match item.action:
 		"Attack": attack(item)
 		"Destroy": destroy(item)
@@ -72,10 +77,10 @@ func use_item(item: Item) -> void:
 		"None": pass
 
 func destroy(item: Item):
-	if global_position.distance_to(get_global_mouse_position()) > TOOL_USE_RANGE: return
-	if get_hovered_cell_data("ToolType") == null: return
+	if global_position.distance_to(get_global_mouse_position()) > TOOL_USE_RANGE or get_hovered_cell_data("ToolType") == null: return
 	if item.tooltype == get_hovered_cell_data("ToolType") or get_hovered_cell_data("ToolType") == "Any":
-		world.destroy(get_tilemap_mouse_position())
+		destroy_timer.start(get_hovered_cell_data("DestroyTime"))
+		destroying_tile_pos = get_tilemap_mouse_position()
 
 func attack(item: Item) -> void:
 	pass
@@ -142,3 +147,7 @@ func _on_pickup_range_body_entered(body) -> void:
 func set_current_slot(slot) -> void:
 	current_slot = slot
 	inventory_gui.get_child(slot).button_pressed = true
+
+
+func _on_destroy_timer_timeout():
+	world.destroy(get_tilemap_mouse_position())
