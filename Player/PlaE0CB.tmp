@@ -337,16 +337,9 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+menu_type = "Hand"
 
 [node name="UseCooldown" type="Timer" parent="."]
 wait_time = 0.5
 
-[node name="DestroyTimer" type="Timer" parent="."]
-one_shot = true
-
-[node name="ScrollTimer" type="Timer" parent="."]
-wait_time = 0.01
-one_shot = true
-
 [connection signal="body_entered" from="PickupRange" to="." method="_on_pickup_range_body_entered"]
-[connection signal="timeout" from="DestroyTimer" to="." method="_on_destroy_timer_timeout"]

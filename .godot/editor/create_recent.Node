@@ -1,14 +1,19 @@
+<<<<<<< Updated upstream
 Timer
+=======
+Button
+ScrollContainer
+MarginContainer
+Label
+VBoxContainer
+GridContainer
+Panel
+CanvasLayer
+>>>>>>> Stashed changes
 Node2D
 TileMap
 CollisionShape2D
 Area2D
 MarginContainer
 TextureProgressBar
-Label
-CanvasLayer
 Control
-Button
-TextureButton
-HBoxContainer
-CenterContainer

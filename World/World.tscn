@@ -55,9 +55,14 @@ separation = Vector2i(1, 1)
 0:1/0 = 0
 0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:1/0/physics_layer_0/angular_velocity = 0.0
+<<<<<<< Updated upstream
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0, 8, 0, 8, 8, -8, 8)
 0:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 0:1/0/physics_layer_1/angular_velocity = 0.0
+=======
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0/custom_data_0 = "Break"
+>>>>>>> Stashed changes
 0:1/0/custom_data_1 = "Stone"
 0:1/0/custom_data_2 = [1, 2]
 0:1/0/custom_data_3 = "Pickaxe"
@@ -285,6 +290,7 @@ layer_2/tile_data = PackedInt32Array()
 
 [node name="Item" parent="." instance=ExtResource("5_cwolc")]
 position = Vector2(767, 791)
+<<<<<<< Updated upstream
 
 [node name="Item2" parent="." instance=ExtResource("5_cwolc")]
 position = Vector2(800, 800)
@@ -294,3 +300,9 @@ type = "Anvil"
 position = Vector2(800, 800)
 type = "Bridge"
 amount = 5
+=======
+type = "Pickaxe"
+
+[node name="Item2" parent="." instance=ExtResource("5_cwolc")]
+position = Vector2(700, 824)
+>>>>>>> Stashed changes

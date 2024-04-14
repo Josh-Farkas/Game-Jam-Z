@@ -70,43 +70,43 @@ static var item_types: Dictionary = {
 		"Sprite": preload("res://Items/Axe.png"),
 		"MaxStack": 1,
 		"Action": "Destroy",
-		"ToolType": "Axe",
+		"ToolType": "Axe"
 	},
 	"Pickaxe": {
 		"Sprite": preload("res://Items/Axe.png"),
 		"MaxStack": 1,
 		"Action": "Destroy",
-		"ToolType": "Pickaxe",
+		"ToolType": "Pickaxe"
 	},
 	"BattleAxe": {
 		"Sprite": preload("res://Items/BattleAxe.png"),
 		"MaxStack": 1,
-		"Action": "Attack",
+		"Action": "Attack"
 	},
 	"Broadsword": {
 		"Sprite": preload("res://Items/Broadsword.png"),
 		"MaxStack": 1,
-		"Action": "Attack",
+		"Action": "Attack"
 	},
 	"Knife": {
 		"Sprite": preload("res://Items/Knife.png"),
 		"MaxStack": 1,
-		"Action": "Attack",
+		"Action": "Attack"
 	},
 	"Mallet": {
 		"Sprite": preload("res://Items/Mallet.png"),
 		"MaxStack": 1,
-		"Action": "Attack",
+		"Action": "Attack"
 	},
 	"Shiv": {
 		"Sprite": preload("res://Items/Shiv.png"),
 		"MaxStack": 1,
-		"Action": "Attack",
+		"Action": "Attack"
 	},
 	"Sword": {
 		"Sprite": preload("res://Items/Sword.png"),
 		"MaxStack": 1,
-		"Action": "Attack",
+		"Action": "Attack"
 	},
 }
 

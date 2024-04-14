@@ -6,8 +6,12 @@ class_name Player
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var inventory_gui: HBoxContainer = $Control/MarginContainer/Inventory
 @onready var healthbar: TextureProgressBar = $Control/MarginContainer2/HealthBar
+<<<<<<< Updated upstream
 @onready var destroy_timer: Timer = $DestroyTimer
 @onready var scroll_timer: Timer = $ScrollTimer
+=======
+@onready var crafting_menu: Panel = $Control/CraftingMenu
+>>>>>>> Stashed changes
 
 const INV_SIZE = 10
 const PLACE_RANGE = 100
@@ -31,7 +35,7 @@ func _ready():
 	healthbar.value = health
 	
 	for i in INV_SIZE:
-		var slot = preload("res://UI/inventory_slot.tscn").instantiate()
+		var slot = preload("res://UI/InventorySlot.tscn").instantiate()
 		slot.button_group = preload("res://UI/InventorySlotButtonGroup.tres")
 		inventory_gui.add_child(slot)
 	
@@ -66,7 +70,8 @@ func _input(event):
 		set_current_slot(current_slot + 1 if current_slot < INV_SIZE - 1 else 0)
 		scroll_timer.start()
 	
-				
+	if (Input.is_action_just_pressed("toggle_menu")):
+		crafting_menu.visible = not crafting_menu.visible
 
 func use_item(item: Item) -> void:
 	print("Using: ", item)

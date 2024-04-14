@@ -3,6 +3,7 @@ extends Node2D
 const MAP_SIZE = Vector2(100*16, 100*16)
 
 const TILEMAP_COORDS := {
+<<<<<<< Updated upstream
 	"Snow": Vector2i.ZERO,
 	"Tree": Vector2i(1,0),
 	"DeadTree": Vector2i(2,0),
@@ -13,6 +14,14 @@ const TILEMAP_COORDS := {
 	"Grass": Vector2i(2, 2),
 	"Coal": Vector2i(1,3),
 	"Water": Vector2i(3,0),
+=======
+	"Snow": Vector2.ZERO,
+	"Tree": Vector2(1,0),
+	"Stone": Vector2(0,1),
+	"Campfire": Vector2(3,2),
+	"Anvil": Vector2(3, 1),
+	"Select": Vector2(0, 3),
+>>>>>>> Stashed changes
 }
 
 var item_scn = preload("res://Items/Item.tscn")
@@ -86,6 +95,7 @@ func generate_objects(size: Vector2, densities: Dictionary, tile_size: int = 16,
 	
 	for x in range(0, size.x, tile_size):
 		for y in range(0, size.y, tile_size):
+<<<<<<< Updated upstream
 			var pos = Vector2i(x, y)
 			# prevent objects from spawning at 6x6 spawn area
 			if x in range(size.x/2 - 50, size.x/2 + 50) and y in range(size.y/2 - 50, size.y/2 + 50):
@@ -107,3 +117,12 @@ func generate_objects(size: Vector2, densities: Dictionary, tile_size: int = 16,
 					spawn_obj(TILEMAP_COORDS.Coal, pos)
 				elif (1-odds) * densities.Grass >= randf():
 					spawn_obj(TILEMAP_COORDS.Grass, pos)
+=======
+			# prevent objects from spawning at 100x100 spawn area
+			if x in range(size.x/2 - 50, size.x/2 + 50) and y in range(size.y/2 - 50, size.y/2 + 50): continue
+			var odds := noise.get_noise_2d(x / forest_scale, y / forest_scale) ** 2
+			if odds * tree_density >= randf():
+				spawn_obj(TILEMAP_COORDS.Tree, Vector2(x, y))
+			elif odds * rock_density >= randf():
+				spawn_obj(TILEMAP_COORDS.Stone, Vector2(x, y))
+>>>>>>> Stashed changes
