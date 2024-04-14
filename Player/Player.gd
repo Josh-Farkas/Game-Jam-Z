@@ -51,12 +51,8 @@ func _physics_process(delta):
 
 func _input(event):
 	if Input.is_action_just_pressed("left_click"):
-		if inventory[current_slot] != null:
-			use_item(inventory[current_slot])
-		else:
-			match get_hovered_cell_data("ClickAction"):
-				"Break": pass
-	
+		use_item(inventory[current_slot])
+		
 	if Input.is_action_just_pressed("right_click"):
 		match get_hovered_cell_data("ClickAction"):
 			"Fuel": pass
@@ -73,24 +69,27 @@ func _input(event):
 
 func use_item(item: Item) -> void:
 	print("Using: ", item)
-	match item.action:
-		"Attack": attack(item)
-		"Destroy": destroy(item)
-		"Place": place(item)
-		"None": pass
+	if inventory[current_slot] == null:
+		destroy(null)
+	else:
+		match item.action:
+			"Attack": attack(item)
+			"Destroy": destroy(item)
+			"Place": if not place(item): destroy(item)
+			"None": pass
 
 func destroy(item: Item):
 	if global_position.distance_to(get_global_mouse_position()) > TOOL_USE_RANGE or get_hovered_cell_data("ToolType") == null: return
-	if item.tooltype == get_hovered_cell_data("ToolType") or get_hovered_cell_data("ToolType") == "Any":
+	if get_hovered_cell_data("ToolType") == "Any" or (item and item.tooltype == get_hovered_cell_data("ToolType")):
 		destroy_timer.start(get_hovered_cell_data("DestroyTime"))
 		destroying_tile_pos = get_tilemap_mouse_position()
 
 func attack(item: Item) -> void:
 	pass
 	
-func place(item: Item) -> void:
-	if global_position.distance_to(get_global_mouse_position()) > PLACE_RANGE: return
-	if tilemap.get_cell_tile_data(1, get_tilemap_mouse_position()) != null: return
+func place(item: Item) -> bool:
+	if global_position.distance_to(get_global_mouse_position()) > PLACE_RANGE \
+	or tilemap.get_cell_tile_data(1, get_tilemap_mouse_position()) != null: return false
 	
 	tilemap.set_cell(1, get_tilemap_mouse_position(), 0, item.tile_pos)
 	tilemap.set_cell(0, get_tilemap_mouse_position(), 0, Vector2.ZERO, 1)
@@ -100,6 +99,7 @@ func place(item: Item) -> void:
 		inventory[current_slot].queue_free()
 		inventory_gui.get_child(current_slot).icon = null
 		inventory[current_slot] = null
+	return true
 
 func get_tilemap_mouse_position():
 	return tilemap.local_to_map(tilemap.get_local_mouse_position())
