@@ -7,7 +7,7 @@ const TILEMAP_COORDS := {
 	"Tree": Vector2i(1,0),
 	"DeadTree": Vector2i(2,0),
 	"Stone": Vector2i(0,1),
-	"Campfire": Vector2i(3,2),
+	"Campfire": Vector2i(0,4),
 	"Anvil": Vector2i(3, 1),
 	"Select": Vector2i(0, 3),
 	"Grass": Vector2i(2, 2),

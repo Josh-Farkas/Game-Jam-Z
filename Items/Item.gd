@@ -28,6 +28,12 @@ static var item_types: Dictionary = {
 		"Action": "Place",
 		"TilePos": Vector2i(3, 1)
 	},
+	"Campfire": {
+		"Sprite": preload("res://Items/Campfire.png"),
+		"MaxStack": 1,
+		"Action": "Place",
+		"TilePos": Vector2i(0, 4)
+	},
 	"Axe": {
 		"Sprite": preload("res://Items/Axe.png"),
 		"MaxStack": 1,
@@ -83,9 +89,8 @@ var max_stack: int = 0
 var tooltype: String = ""
 var tile_pos: Vector2i = Vector2i(-1, -1)
 
-
 var player_in_range: bool = false
-var speed = 100
+var speed = 80
 
 
 # Called when the node enters the scene tree for the first time.
