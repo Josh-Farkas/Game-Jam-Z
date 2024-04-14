@@ -48,7 +48,7 @@ func _input(event):
 		if inventory[current_slot] != null:
 			use_item(inventory[current_slot])
 		else:
-			match get_hovered_cell_data().get_custom_data("ClickAction"):
+			match get_hovered_cell_data("ClickAction"):
 				"Break": pass
 	
 	if Input.is_action_just_pressed("right_click"):
