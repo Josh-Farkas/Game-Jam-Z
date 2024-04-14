@@ -5,43 +5,57 @@ class_name Item
 var item_types: Dictionary = {
 	"Wood": {
 		"Sprite": preload("res://Items/Wood.png"),
-		"MaxStack": 20
+		"MaxStack": 99,
+		"Action": "Place",
+		"PlaceableObject": preload("res://World/Campfire/Campfire.tscn"),
+		"TileSetID": 0,
 	},
 	"Stone": {
 		"Sprite": preload("res://Items/Stone.png"),
-		"MaxStack": 20
+		"MaxStack": 99,
+		"Action": "None",
 	},
 	"Axe": {
 		"Sprite": preload("res://Items/Axe.png"),
-		"MaxStack": 1
+		"MaxStack": 3,
+		"Action": "Attack",
 	},
 	"BattleAxe": {
 		"Sprite": preload("res://Items/BattleAxe.png"),
-		"MaxStack": 1
+		"MaxStack": 1,
+		"Action": "Attack",
 	},
 	"Broadsword": {
 		"Sprite": preload("res://Items/Broadsword.png"),
-		"MaxStack": 1
+		"MaxStack": 1,
+		"Action": "Attack",
 	},
 	"Knife": {
 		"Sprite": preload("res://Items/Knife.png"),
-		"MaxStack": 1
+		"MaxStack": 1,
+		"Action": "Attack",
 	},
 	"Mallet": {
 		"Sprite": preload("res://Items/Mallet.png"),
-		"MaxStack": 1
+		"MaxStack": 1,
+		"Action": "Attack",
 	},
 	"Shiv": {
 		"Sprite": preload("res://Items/Shiv.png"),
-		"MaxStack": 1
+		"MaxStack": 1,
+		"Action": "Attack",
 	},
 	"Sword": {
 		"Sprite": preload("res://Items/Sword.png"),
-		"MaxStack": 1
+		"MaxStack": 1,
+		"Action": "Attack",
 	},
 }
 
 var type = "Axe"
+var placeable_obj: PackedScene = null
+var action: String = ""
+var tileset_id = -1
 
 @onready
 var player: CharacterBody2D = get_tree().get_first_node_in_group("Player")
@@ -57,8 +71,14 @@ func _ready():
 	set_type(type)
 
 func set_type(name: String) -> void:
-	$Sprite2D.texture = item_types[name]["Sprite"]
-	max_stack = item_types[name]["MaxStack"]
+	var type: Dictionary = item_types[name]
+	$Sprite2D.texture = type.Sprite
+	max_stack = type.MaxStack
+	action = type.Action
+	if type.get("PlaceableObject") != null:
+		placeable_obj = type.PlaceableObject
+		tileset_id = type.TileSetID
+		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

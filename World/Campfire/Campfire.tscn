@@ -1,40 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://cgbg3akvy8peg"]
+[gd_scene load_steps=3 format=3 uid="uid://cgbg3akvy8peg"]
 
 [ext_resource type="Script" path="res://World/Campfire/Campfire.gd" id="1_8smp4"]
-[ext_resource type="Texture2D" uid="uid://bu7t1kygcvpki" path="res://icon.svg" id="2_rb83i"]
 [ext_resource type="Texture2D" uid="uid://dbkanegqm3qo6" path="res://World/Campfire/light.jpg" id="3_tijdb"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8tcik"]
-size = Vector2(28, 6)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rekaf"]
-size = Vector2(28, 14)
-
-[node name="Campfire" type="StaticBody2D"]
-position = Vector2(0, -7)
+[node name="Campfire" type="Node2D"]
 script = ExtResource("1_8smp4")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 0, 0, 1)
-position = Vector2(7.15256e-07, 3.01717)
-scale = Vector2(0.21875, 0.113794)
-texture = ExtResource("2_rb83i")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 7)
-shape = SubResource("RectangleShape2D_8tcik")
-
-[node name="ClickArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickArea"]
-position = Vector2(0, 3)
-shape = SubResource("RectangleShape2D_rekaf")
-
 [node name="PointLight2D" type="PointLight2D" parent="."]
-scale = Vector2(1.5, 1.5)
+scale = Vector2(3.16, 3)
 color = Color(1, 0.215686, 0.0392157, 1)
-energy = 100.0
 texture = ExtResource("3_tijdb")
-
-[connection signal="mouse_entered" from="ClickArea" to="." method="_on_click_area_mouse_entered"]
-[connection signal="mouse_exited" from="ClickArea" to="." method="_on_click_area_mouse_exited"]

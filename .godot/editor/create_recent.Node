@@ -1,3 +1,8 @@
+Node2D
+TileMap
+CollisionShape2D
+Area2D
+Timer
 MarginContainer
 TextureProgressBar
 Label
@@ -7,8 +12,6 @@ Button
 TextureButton
 HBoxContainer
 CenterContainer
-CollisionShape2D
 StaticBody2D
-Area2D
 AnimationTree
 AnimationPlayer

@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://c2x18lnurgysb" path="res://UI/HealthBarEmpty.png" id="3_cp1gc"]
 [ext_resource type="Texture2D" uid="uid://dslfjp5u74nhu" path="res://UI/HealthBarFull.png" id="4_5ojiy"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_kqsae"]
-radius = 8.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_er2f2"]
+size = Vector2(13, 14)
 
 [sub_resource type="Animation" id="Animation_u5bah"]
 length = 0.001
@@ -255,7 +255,8 @@ vframes = 3
 frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_kqsae")
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_er2f2")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.5, 2.5)
@@ -318,5 +319,8 @@ size_flags_vertical = 0
 rounded = true
 texture_under = ExtResource("3_cp1gc")
 texture_progress = ExtResource("4_5ojiy")
+
+[node name="UseCooldown" type="Timer" parent="."]
+wait_time = 0.5
 
 [connection signal="body_entered" from="PickupRange" to="." method="_on_pickup_range_body_entered"]
