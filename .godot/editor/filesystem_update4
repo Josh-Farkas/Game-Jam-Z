@@ -1,7 +1,10 @@
-res://Items/Item.tscn
-res://Player/Player.gd
-res://Items/Item.gd
 res://Player/Player.tscn
+res://Player/Player.gd
 res://World/World.tscn
+res://Items/Item.tscn
 res://UI/inventory_slot.tscn
 res://World/Campfire/Campfire.tscn
+res://World/Campfire/Campfire.gd
+res://Items/Item.gd
+res://World/Objects.gd
+res://World/World.gd

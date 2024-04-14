@@ -1,3 +1,8 @@
+Node2D
+TileMap
+CollisionShape2D
+Area2D
+Timer
 MarginContainer
 CanvasLayer
 Control
@@ -5,11 +10,6 @@ Button
 TextureButton
 HBoxContainer
 CenterContainer
-CollisionShape2D
 StaticBody2D
-Area2D
 AnimationTree
 AnimationPlayer
-Node2D
-SkeletonIK3D
-Camera2D

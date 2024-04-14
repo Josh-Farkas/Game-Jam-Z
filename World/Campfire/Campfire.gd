@@ -1,6 +1,6 @@
-extends StaticBody2D
+extends Node2D
 
-
+var colliding: bool = false
 
 var max_fuel: float = 100.0
 var fuel: float = 25.0
@@ -15,15 +15,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	fuel -= fuel_loss_rate * delta
-	$PointLight2D.energy = fuel / 4
-
+	$PointLight2D.energy = fuel / 100
 
 func add_fuel(amount):
 	fuel = min(fuel + amount, max_fuel)
-
-func _on_click_area_mouse_entered():
-	hovered = true
-
-
-func _on_click_area_mouse_exited():
-	hovered = false
