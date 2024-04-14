@@ -323,4 +323,8 @@ texture_progress = ExtResource("4_5ojiy")
 [node name="UseCooldown" type="Timer" parent="."]
 wait_time = 0.5
 
+[node name="DestroyTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="body_entered" from="PickupRange" to="." method="_on_pickup_range_body_entered"]
+[connection signal="timeout" from="DestroyTimer" to="." method="_on_destroy_timer_timeout"]

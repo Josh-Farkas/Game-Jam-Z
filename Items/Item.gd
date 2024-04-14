@@ -4,13 +4,13 @@ class_name Item
 static var item_types: Dictionary = {
 	"Wood": {
 		"Sprite": preload("res://Items/Wood.png"),
-		"MaxStack": 99,
+		"MaxStack": 20,
 		"Action": "Place",
 		"PlaceableObject": Vector2(1, 3),
 	},
 	"Stone": {
 		"Sprite": preload("res://Items/Stone.png"),
-		"MaxStack": 99,
+		"MaxStack": 20,
 		"Action": "None",
 	},
 	"Axe": {
