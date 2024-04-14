@@ -7,6 +7,7 @@ class_name Player
 @onready var inventory_gui: HBoxContainer = $Control/MarginContainer/Inventory
 @onready var healthbar: TextureProgressBar = $Control/MarginContainer2/HealthBar
 @onready var destroy_timer: Timer = $DestroyTimer
+@onready var scroll_timer: Timer = $ScrollTimer
 
 const INV_SIZE = 10
 const PLACE_RANGE = 100
@@ -61,10 +62,12 @@ func _input(event):
 			"Fuel": pass
 			"Break": pass
 
-	if Input.is_action_just_released("scroll_up"):
+	if Input.is_action_just_released("scroll_up") and scroll_timer.is_stopped():
 		set_current_slot(current_slot - 1 if current_slot > 0 else INV_SIZE - 1)
-	if Input.is_action_just_released("scroll_down"):
+		scroll_timer.start()
+	if Input.is_action_just_released("scroll_down") and scroll_timer.is_stopped():
 		set_current_slot(current_slot + 1 if current_slot < INV_SIZE - 1 else 0)
+		scroll_timer.start()
 	
 				
 
@@ -87,16 +90,16 @@ func attack(item: Item) -> void:
 	
 func place(item: Item) -> void:
 	if global_position.distance_to(get_global_mouse_position()) > PLACE_RANGE: return
-	#var cell_data := get_hovered_cell_data("placeable")
-	#if not cell_data.get_custom_data("placeable"): return
-	#
-	#tilemap.set_cell(1, get_tilemap_mouse_position(), item.tileset_pos)
-	#
-	#inventory[current_slot].amount -= 1
-	#if inventory[current_slot].amount <= 0:
-		#inventory[current_slot].queue_free()
-		#inventory_gui.get_child(current_slot).icon = null
-		#inventory[current_slot] = null
+	if tilemap.get_cell_tile_data(1, get_tilemap_mouse_position()) != null: return
+	
+	tilemap.set_cell(1, get_tilemap_mouse_position(), 0, item.tile_pos)
+	tilemap.set_cell(0, get_tilemap_mouse_position(), 0, Vector2.ZERO, 1)
+	
+	inventory[current_slot].amount -= 1
+	if inventory[current_slot].amount <= 0:
+		inventory[current_slot].queue_free()
+		inventory_gui.get_child(current_slot).icon = null
+		inventory[current_slot] = null
 
 func get_tilemap_mouse_position():
 	return tilemap.local_to_map(tilemap.get_local_mouse_position())

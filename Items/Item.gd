@@ -5,13 +5,28 @@ static var item_types: Dictionary = {
 	"Wood": {
 		"Sprite": preload("res://Items/Wood.png"),
 		"MaxStack": 20,
-		"Action": "Place",
-		"PlaceableObject": Vector2(1, 3),
+		"Action": "None",
 	},
 	"Stone": {
 		"Sprite": preload("res://Items/Stone.png"),
 		"MaxStack": 20,
 		"Action": "None",
+	},
+	"Coal": {
+		"Sprite": preload("res://Items/Coal.png"),
+		"MaxStack": 20,
+		"Action": "None",
+	},
+	"Fiber": {
+		"Sprite": preload("res://Items/Wood.png"),
+		"MaxStack": 20,
+		"Action": "None",
+	},
+	"Anvil": {
+		"Sprite": preload("res://Items/Anvil.png"),
+		"MaxStack": 1,
+		"Action": "Place",
+		"TilePos": Vector2i(3, 1)
 	},
 	"Axe": {
 		"Sprite": preload("res://Items/Axe.png"),
@@ -66,6 +81,7 @@ var player: CharacterBody2D = get_tree().get_first_node_in_group("Player")
 var action: String = ""
 var max_stack: int = 0
 var tooltype: String = ""
+var tile_pos: Vector2i = Vector2i(-1, -1)
 
 
 var player_in_range: bool = false
@@ -82,9 +98,8 @@ func set_type(name: String) -> void:
 	$Sprite2D.texture = type.Sprite
 	max_stack = type.MaxStack
 	action = type.Action
-	#if type.get("PlaceableObject") != null:
-		#placeable_obj = type.PlaceableObject
-		#tileset_id = type.TileSetID
+	if type.get("TilePos") != null:
+		tile_pos = type.TilePos
 	if type.get("ToolType") != null:
 		tooltype = type.ToolType
 	
