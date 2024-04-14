@@ -1,6 +1,6 @@
 extends Node2D
 
-const MAP_SIZE = Vector2(100*16, 100*16)
+const CHUNK_SIZE = Vector2(32*16, 32*16)
 
 const TILEMAP_COORDS := {
 	"Snow": Vector2i.ZERO,
@@ -19,17 +19,43 @@ var item_scn = preload("res://Items/Item.tscn")
 
 @onready var tilemap: TileMap = $TileMap
 @onready var player: CharacterBody2D = $Player
+var player_chunk: Vector2i = Vector2i.ZERO
 
 var selection_coords = Vector2i.ZERO
 
+var generated_chunks: Dictionary = {}
+
+var noise := FastNoiseLite.new()
+var river_noise := FastNoiseLite.new()
+var ore_noise := FastNoiseLite.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	generate_objects(MAP_SIZE, {"Tree": 0.2, "Rock": .075, "Coal":.015, "Grass": 0.2}, 16, 5)
-	player.position = MAP_SIZE / 2
+	noise.seed = randi_range(0, 1000)
+	noise.noise_type = FastNoiseLite.TYPE_PERLIN
+	noise.fractal_gain = 0
 	
-	spawn_obj(TILEMAP_COORDS.Campfire, MAP_SIZE/2)
-	$Campfire.position = MAP_SIZE/2
+	river_noise.seed = noise.seed + 1
+	river_noise.noise_type = FastNoiseLite.TYPE_SIMPLEX_SMOOTH
+	river_noise.fractal_gain = 0
+	river_noise.fractal_octaves = 2
+	
+	ore_noise.seed = noise.seed + 1
+	ore_noise.noise_type = FastNoiseLite.TYPE_SIMPLEX_SMOOTH
+	ore_noise.fractal_gain = 0
+	ore_noise.fractal_octaves = 2
+	
+	noise.get_seamless_image(1000, 1000).save_jpg("res://World/Noise.jpg")
+	river_noise.get_seamless_image(1000, 1000).save_jpg("res://World/RiverNoise.jpg")
+	
+	
+	generate_chunks(Vector2i.ZERO)
+	for x in range(-8*16, 8*16, 16):
+		for y in range(-2.4*16, 2.6*16, 16):
+			spawn_obj(TILEMAP_COORDS.Snow, Vector2i(x, y), 0)
+	
+	spawn_obj(TILEMAP_COORDS.Campfire, Vector2i(-1,-1))
+	$Campfire.position = Vector2i(-8, -8)
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -39,6 +65,12 @@ func _process(delta):
 		tilemap.erase_cell(2, selection_coords)
 		tilemap.set_cell(2, coords, 0, TILEMAP_COORDS.Select)
 		selection_coords = coords
+	
+	var new_chunk: Vector2i = floor(player.global_position / CHUNK_SIZE)
+	print(new_chunk)
+	if new_chunk != player_chunk:
+		generate_chunks(new_chunk)
+		player_chunk = new_chunk
 
 
 func destroy(tile_pos: Vector2i):
@@ -59,42 +91,30 @@ func drop_item(item: Item, pos: Vector2):
 	item.position = pos
 	add_child(item)
 
+
+func generate_chunks(center_pos: Vector2i):
+	for x in range(-1, 2):
+		for y in range(-1, 2):
+			var chunk_pos := center_pos + Vector2i(x, y)
+			print(chunk_pos)
+			if not generated_chunks.get(chunk_pos, false):
+				print("Generating: ", chunk_pos)
+				generate_objects(CHUNK_SIZE, chunk_pos, {"Tree": 0.2, "Rock": .075, "Coal":.015, "Grass": 0.2}, 16, 5)
+				generated_chunks[chunk_pos] = true
+				
+
 func spawn_obj(tile_coords: Vector2i, pos: Vector2, layer:int =1):
 	tilemap.set_cell(layer, tilemap.local_to_map(pos), 0, tile_coords)
 
 
-func generate_objects(size: Vector2, densities: Dictionary, tile_size: int = 16, forest_scale: float = 3, river_scale = 20):
-	var noise := FastNoiseLite.new()
-	noise.seed = randi_range(0, 1000)
-	noise.noise_type = FastNoiseLite.TYPE_PERLIN
-	noise.fractal_gain = 0
-	
-	var river_noise := FastNoiseLite.new()
-	river_noise.seed = noise.seed
-	noise.noise_type = FastNoiseLite.TYPE_PERLIN
-	river_noise.fractal_gain = 0
-	river_noise.fractal_octaves = 2
-	
-	var ore_noise := FastNoiseLite.new()
-	river_noise.seed = noise.seed
-	noise.noise_type = FastNoiseLite.TYPE_SIMPLEX_SMOOTH
-	river_noise.fractal_gain = 0
-	river_noise.fractal_octaves = 2
-	
-	noise.get_seamless_image(1000, 1000).save_jpg("res://World/Noise.jpg")
-	river_noise.get_seamless_image(1000, 1000).save_jpg("res://World/RiverNoise.jpg")
-	
-	for x in range(0, size.x, tile_size):
-		for y in range(0, size.y, tile_size):
+func generate_objects(size: Vector2, offset: Vector2i, densities: Dictionary, tile_size: int = 16, forest_scale: float = 3, river_scale = 20):
+	for x in range(offset.x * size.x, size.x + offset.x * size.x, tile_size):
+		for y in range(offset.y * size.y, size.y + offset.y * size.y, tile_size):
 			var pos = Vector2i(x, y)
-			# prevent objects from spawning at 6x6 spawn area
-			if x in range(size.x/2 - 50, size.x/2 + 50) and y in range(size.y/2 - 50, size.y/2 + 50):
-				spawn_obj(TILEMAP_COORDS.Snow, pos, 0)
-				continue
 			# value of the perlin noise scaled by forest_scale
 			var odds := clampf(noise.get_noise_2d(x / forest_scale, y / forest_scale) + 0.5, 0, 1)
 			var river_val: float = river_noise.get_noise_2d(x / river_scale, y / river_scale)
-			if abs(river_val) < .1:
+			if abs(river_val) < .1: # River thickness
 				spawn_obj(TILEMAP_COORDS.Water, pos, 0)
 			else:
 				spawn_obj(TILEMAP_COORDS.Snow, pos, 0)

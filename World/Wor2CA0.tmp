@@ -267,7 +267,6 @@ sources/0 = SubResource("TileSetAtlasSource_shbi4")
 script = ExtResource("1_rmncd")
 
 [node name="Player" parent="." instance=ExtResource("1_u5x5s")]
-position = Vector2(-8, 8)
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true

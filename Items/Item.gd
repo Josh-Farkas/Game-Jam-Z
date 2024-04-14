@@ -73,7 +73,7 @@ static var item_types: Dictionary = {
 		"ToolType": "Axe",
 	},
 	"Pickaxe": {
-		"Sprite": preload("res://Items/Axe.png"),
+		"Sprite": preload("res://Items/Pickaxe.png"),
 		"MaxStack": 1,
 		"Action": "Destroy",
 		"ToolType": "Pickaxe",
