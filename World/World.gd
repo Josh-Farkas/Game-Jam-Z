@@ -21,7 +21,7 @@ var selection_coords = Vector2i.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	generate_objects(MAP_SIZE)
+	generate_objects(MAP_SIZE, .4, .1, 16, 4)
 	player.position = MAP_SIZE / 2
 	
 	spawn_obj(TILEMAP_COORDS.Campfire, MAP_SIZE/2)
