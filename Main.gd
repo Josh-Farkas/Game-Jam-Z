@@ -1,7 +1,5 @@
-extends StaticBody2D
-class_name Item
+extends Node
 
-<<<<<<< Updated upstream
 static var item_types: Dictionary = {
 	"Wood": {
 		"Sprite": preload("res://Items/Wood.png"),
@@ -71,103 +69,77 @@ static var item_types: Dictionary = {
 		"Sprite": preload("res://Items/Axe.png"),
 		"MaxStack": 1,
 		"Action": "Destroy",
-		"ToolType": "Axe"
+		"ToolType": "Axe",
 	},
 	"Pickaxe": {
 		"Sprite": preload("res://Items/Axe.png"),
 		"MaxStack": 1,
 		"Action": "Destroy",
-		"ToolType": "Pickaxe"
+		"ToolType": "Pickaxe",
 	},
 	"BattleAxe": {
 		"Sprite": preload("res://Items/BattleAxe.png"),
 		"MaxStack": 1,
-		"Action": "Attack"
+		"Action": "Attack",
 	},
 	"Broadsword": {
 		"Sprite": preload("res://Items/Broadsword.png"),
 		"MaxStack": 1,
-		"Action": "Attack"
+		"Action": "Attack",
 	},
 	"Knife": {
 		"Sprite": preload("res://Items/Knife.png"),
 		"MaxStack": 1,
-		"Action": "Attack"
+		"Action": "Attack",
 	},
 	"Mallet": {
 		"Sprite": preload("res://Items/Mallet.png"),
 		"MaxStack": 1,
-		"Action": "Attack"
+		"Action": "Attack",
 	},
 	"Shiv": {
 		"Sprite": preload("res://Items/Shiv.png"),
 		"MaxStack": 1,
-		"Action": "Attack"
+		"Action": "Attack",
 	},
 	"Sword": {
 		"Sprite": preload("res://Items/Sword.png"),
 		"MaxStack": 1,
-		"Action": "Attack"
+		"Action": "Attack",
 	},
 }
 
-=======
->>>>>>> Stashed changes
-@onready
-var player: CharacterBody2D = get_tree().get_first_node_in_group("Player")
-
-@export_category("Item Info")
-@export var type = ""
-@export var amount = 1
-var action: String = ""
-var max_stack: int = 0
-var tooltype: String = ""
-var tile_pos: Vector2i = Vector2i(-1, -1)
-var fuel_amount: int = 0
-var placeable_on_water: bool = false
-
-var player_in_range: bool = false
-var speed = 80
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	set_type(type)
-	set_amount(amount)
-
-func set_type(name: String) -> void:
-	var type: Dictionary = Main.item_types[name]
-	$Sprite2D.texture = type.Sprite
-	max_stack = type.MaxStack
-	action = type.Action
-	if type.get("TilePos") != null:
-		tile_pos = type.TilePos
-	if type.get("ToolType") != null:
-		tooltype = type.ToolType
-	if type.get("Fuel") != null:
-		fuel_amount = type.Fuel
-	if type.get("PlaceableOnWater") != null:
-		placeable_on_water = type.PlaceableOnWater
-	
-		
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if player_in_range and (player.inventory.map(func(x: Item): return x.type if x != null and x.amount != x.max_stack else null).find(type) != -1 or player.inventory.find(null) != -1):
-		position += global_position.direction_to(player.global_position) * speed * delta
-
-
-func _on_pickup_area_body_entered(body):
-	if body == player:
-		player_in_range = true
-
-
-func _on_pickup_area_body_exited(body):
-	if body == player:
-		player_in_range = false
-
-func set_amount(new_amount):
-	amount = new_amount
-
-func change_amount(delta: int):
-	set_amount(amount + delta)
+static var item_recipes: Dictionary = {
+	"Axe": {
+		"Amount": 1,
+		"Ingredients": {"Wood": 5, "Stone": 5}
+	},
+	"Pickaxe": {
+		"Amount": 1,
+		"Ingredients": {"Wood": 5, "Stone": 5}
+	},
+	"BattleAxe": {
+		"Amount": 1,
+		"Ingredients": {"Wood": 5, "Stone": 10}
+	},
+	"Broadsword": {
+		"Amount": 1,
+		"Ingredients": {"Wood": 5, "Stone": 4}
+	},
+	"Knife": {
+		"Amount": 1,
+		"Ingredients": {"Wood": 3, "Stone": 2}
+	},
+	"Mallet": {
+		"Amount": 1,
+		"Ingredients": {"Wood": 5, "Stone": 4}
+	},
+	"Shiv": {
+		"Amount": 1,
+		"Ingredients": {"Wood": 2, "Stone": 1}
+	},
+	"Sword": {
+		"Amount": 1,
+		"Ingredients": {"Wood": 5, "Stone": 4}
+	},
+}

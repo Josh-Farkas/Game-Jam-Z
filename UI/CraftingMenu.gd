@@ -1,5 +1,6 @@
 extends Panel
 
+<<<<<<< Updated upstream
 static var item_recipes: Dictionary = {
 	"Axe": {
 		"Amount": 1,
@@ -39,6 +40,12 @@ static var item_recipes: Dictionary = {
 
 @onready var player: CharacterBody2D = get_tree().get_first_node_in_group("Player")
 @onready var craftable_items_container: GridContainer = $MarginContainer/VBoxContainer/ScrollContainer/CraftableItemsContainer
+=======
+@export var type = "Hand"
+
+@onready var player: CharacterBody2D = get_tree().get_first_node_in_group("Player")
+@onready var crafting_buttons_container: GridContainer = $VBoxContainer/MarginContainer/CraftingButtonsContainer
+>>>>>>> Stashed changes
 
 func get_all_items_in_inv():
 	var result: Dictionary = {}
@@ -51,13 +58,21 @@ func get_all_items_in_inv():
 	
 	return result
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 func get_all_craftable_items():
 	var all_items: Dictionary = get_all_items_in_inv()
 
 	var valid_items := []
+<<<<<<< Updated upstream
 	for item in item_recipes:
 		var ingredients = item_recipes[item].Ingredients
+=======
+	for item in Main.item_recipes:
+		var ingredients = Main.item_recipes[item].Ingredients
+>>>>>>> Stashed changes
 		var can_make: bool = true
 		for ingredient in ingredients:
 			if not all_items.get(ingredient) or all_items[ingredient] < ingredients[ingredient]:
@@ -71,6 +86,7 @@ func get_all_craftable_items():
 
 func _on_visibility_changed():
 	if not visible:
+<<<<<<< Updated upstream
 		for child in craftable_items_container.get_children():
 			child.queue_free()
 		return
@@ -79,3 +95,17 @@ func _on_visibility_changed():
 		var slot = preload("res://UI/InventorySlot.tscn").instantiate()
 		slot.icon = Item.item_types[i]["Sprite"]
 		craftable_items_container.add_child(slot)
+=======
+		for child in crafting_buttons_container.get_children():
+			child.queue_free()
+		return
+	
+	for i in Main.item_recipes:
+		var slot = preload("res://UI/CraftingMenuButton.tscn").instantiate()
+		slot.type = i
+		
+		if not get_all_craftable_items().has(i):
+			slot.disabled = true
+		
+		crafting_buttons_container.add_child(slot)
+>>>>>>> Stashed changes

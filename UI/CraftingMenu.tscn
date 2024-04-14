@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=4 format=3 uid="uid://bc6v22afcg2dd"]
 
 [ext_resource type="Script" path="res://UI/CraftingMenu.gd" id="1_tcj2f"]
@@ -8,21 +9,57 @@
 line_spacing = 0.0
 font_size = 32
 outline_size = 16
+=======
+[gd_scene load_steps=4 format=3 uid="uid://cjxqb8wmyd0sm"]
+
+[ext_resource type="Script" path="res://UI/CraftingMenu.gd" id="1_e2w57"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2oh0q"]
+bg_color = Color(0.690196, 0.498039, 0.32549, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.411765, 0.286275, 0.168627, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_lk45p"]
+line_spacing = 0.0
+font_size = 24
+outline_size = 12
+>>>>>>> Stashed changes
 outline_color = Color(0, 0, 0, 1)
 
 [node name="CraftingMenu" type="Panel"]
 visible = false
+<<<<<<< Updated upstream
 custom_minimum_size = Vector2(500, 500)
 theme_override_styles/panel = SubResource("StyleBoxFlat_i2bn7")
 script = ExtResource("1_tcj2f")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+=======
+custom_minimum_size = Vector2(360, 300)
+theme_override_styles/panel = SubResource("StyleBoxFlat_2oh0q")
+script = ExtResource("1_e2w57")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+>>>>>>> Stashed changes
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+<<<<<<< Updated upstream
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
@@ -45,5 +82,26 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 10
+=======
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Crafting"
+label_settings = SubResource("LabelSettings_lk45p")
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+
+[node name="CraftingButtonsContainer" type="GridContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 24
+theme_override_constants/v_separation = 24
+columns = 5
+>>>>>>> Stashed changes
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

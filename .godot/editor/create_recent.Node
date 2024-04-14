@@ -1,4 +1,15 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+Label
+HBoxContainer
+PanelContainer
+VBoxContainer
+Panel
+MarginContainer
+Button
+GridContainer
+>>>>>>> Stashed changes
 Timer
 =======
 Button
@@ -14,6 +25,8 @@ Node2D
 TileMap
 CollisionShape2D
 Area2D
-MarginContainer
 TextureProgressBar
+<<<<<<< Updated upstream
 Control
+=======
+>>>>>>> Stashed changes

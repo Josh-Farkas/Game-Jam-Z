@@ -1,0 +1,87 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvc3yd6v4ivf3"]
+
+[ext_resource type="Script" path="res://UI/CraftingMenuButton.gd" id="1_sif55"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yo4e0"]
+bg_color = Color(0.611765, 0.435294, 0.27451, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.411765, 0.286275, 0.168627, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w5mgd"]
+bg_color = Color(0.694118, 0.494118, 0.313726, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.498039, 0.345098, 0.203922, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v8usw"]
+bg_color = Color(0.447059, 0.317647, 0.2, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.239216, 0.168627, 0.0980392, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jabk5"]
+bg_color = Color(0.447059, 0.317647, 0.2, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.239216, 0.168627, 0.0980392, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+
+[node name="CraftingMenuButton" type="Button"]
+custom_minimum_size = Vector2(48, 48)
+offset_right = 48.0
+offset_bottom = 48.0
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_yo4e0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_w5mgd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_v8usw")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_jabk5")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("1_sif55")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

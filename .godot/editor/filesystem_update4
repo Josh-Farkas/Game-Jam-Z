@@ -1,14 +1,29 @@
-res://World/World.tscn
 res://Player/Player.tscn
+<<<<<<< Updated upstream
 res://Items/Item.tscn
 res://UI/InventorySlot.tscn
 res://World/Campfire/Campfire.tscn
 <<<<<<< Updated upstream
+=======
+res://UI/CraftingMenu.tscn
+res://UI/InventorySlot.tscn
+>>>>>>> Stashed changes
 res://Player/Player.gd
+res://UI/CraftingMenuButton.tscn
+res://UI/CraftingMenu.gd
+res://UI/CraftingIngredientsPanel.tscn
+res://UI/CraftingIngredientInfo.tscn
+res://UI/CraftingIngredientsPanel.gd
 res://Items/Item.gd
+<<<<<<< Updated upstream
 res://World/Campfire/Campfire.gd
 res://World/World.gd
 =======
 res://UI/CraftingMenu.tscn
 res://UI/CraftingSlot.tscn
+>>>>>>> Stashed changes
+=======
+res://Main.gd
+res://UI/CraftingMenuButton.gd
+res://World/World.tscn
 >>>>>>> Stashed changes

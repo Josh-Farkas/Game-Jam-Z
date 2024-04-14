@@ -7,6 +7,10 @@ class_name Player
 @onready var inventory_gui: HBoxContainer = $Control/MarginContainer/Inventory
 @onready var healthbar: TextureProgressBar = $Control/MarginContainer2/HealthBar
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+@onready var crafting_menu: Panel = $Control/HBoxContainer/CraftingMenu
+>>>>>>> Stashed changes
 @onready var destroy_timer: Timer = $DestroyTimer
 @onready var scroll_timer: Timer = $ScrollTimer
 =======
@@ -49,29 +53,39 @@ func _physics_process(delta):
 	if not destroy_timer.is_stopped() and get_tilemap_mouse_position() != destroying_tile_pos and Input.is_action_pressed("left_click"):
 		destroy_timer.stop()
 
-	move_and_slide()
+	if not crafting_menu.visible:
+		move_and_slide()
 	update_animation()
 	
 
 func _input(event):
-	if Input.is_action_just_pressed("left_click"):
-		use_item(inventory[current_slot])
-		
-	if Input.is_action_just_pressed("right_click"):
-		match get_hovered_cell_data("ClickAction"):
-			"Fuel": fuel()
-			"Craft": pass
-			"Break": pass
+	if not crafting_menu.visible:
+		if Input.is_action_just_pressed("left_click"):
+			use_item(inventory[current_slot])
+			
+		if Input.is_action_just_pressed("right_click"):
+			match get_hovered_cell_data("ClickAction"):
+				"Fuel": fuel()
+				"Craft": pass
+				"Break": pass
 
-	if Input.is_action_just_released("scroll_up") and scroll_timer.is_stopped():
-		set_current_slot(current_slot - 1 if current_slot > 0 else INV_SIZE - 1)
-		scroll_timer.start()
-	if Input.is_action_just_released("scroll_down") and scroll_timer.is_stopped():
-		set_current_slot(current_slot + 1 if current_slot < INV_SIZE - 1 else 0)
-		scroll_timer.start()
+		if Input.is_action_just_released("scroll_up") and scroll_timer.is_stopped():
+			set_current_slot(current_slot - 1 if current_slot > 0 else INV_SIZE - 1)
+			scroll_timer.start()
+		if Input.is_action_just_released("scroll_down") and scroll_timer.is_stopped():
+			set_current_slot(current_slot + 1 if current_slot < INV_SIZE - 1 else 0)
+			scroll_timer.start()
 	
+<<<<<<< Updated upstream
 	if (Input.is_action_just_pressed("toggle_menu")):
 		crafting_menu.visible = not crafting_menu.visible
+=======
+	if Input.is_action_just_pressed("toggle_menu"):
+		crafting_menu.visible = not crafting_menu.visible
+		
+		for i in inventory_gui.get_children():
+			i.mouse_filter = Control.MOUSE_FILTER_IGNORE if crafting_menu.visible else Control.MOUSE_FILTER_STOP
+>>>>>>> Stashed changes
 
 func use_item(item: Item) -> void:
 	print("Using: ", item)
@@ -162,14 +176,14 @@ func _on_pickup_range_body_entered(body) -> void:
 		if (slot != -1):
 			if inventory[slot] == null: 
 				inventory[slot] = body
-				inventory_gui.get_child(slot).icon = body.item_types[body.type]["Sprite"]
-				inventory_gui.get_child(slot).get_child(0).text = str(body.amount) if body.amount > 1 else ""
+				inventory_gui.get_child(slot).icon = Main.item_types[body.type]["Sprite"]
+				set_stack_size_text(slot)
 				body.get_parent().remove_child(body)
 				return
 			else:
 				var amount_to_fill = inventory[slot].max_stack - inventory[slot].amount
 				inventory[slot].change_amount(min(body.amount, amount_to_fill))
-				inventory_gui.get_child(slot).get_child(0).text = str(inventory[slot].amount) if inventory[slot].amount > 1 else ""
+				set_stack_size_text(slot)
 				body.change_amount(-amount_to_fill)
 	
 	body.get_parent().remove_child(body)
@@ -178,12 +192,16 @@ func set_current_slot(slot) -> void:
 	current_slot = slot
 	inventory_gui.get_child(slot).button_pressed = true
 
+func set_stack_size_text(slot) -> void:
+	inventory_gui.get_child(slot).get_child(0).text = str(inventory[slot].amount) if inventory[slot] != null and inventory[slot].amount > 1 else ""
+
 func remove_item_from_inv(slot, amount) -> void:
 	inventory[slot].change_amount(-1)
 	if inventory[slot].amount <= 0:
 		inventory[slot].queue_free()
 		inventory_gui.get_child(slot).icon = null
 		inventory[slot] = null
+	set_stack_size_text(slot)
 
 func _on_destroy_timer_timeout():
 	world.destroy(get_tilemap_mouse_position())

@@ -1,10 +1,20 @@
 ea4bc82a6ad023ab7ee23ee620429895
+<<<<<<< Updated upstream
 ::res://::1713111773
 icon.svg::CompressedTexture2D::3857458260672687392::1712870481::1713029653::1::::<><>::
 README.md::TextFile::-1::1712870481::0::1::::<><>::
 ::res://Enemy/::1713029602
 Enemy.tscn::PackedScene::8672174569543730106::1713029602::0::1::::<><>::
 ::res://Items/::1713111760
+=======
+::res://::1713131280
+icon.svg::CompressedTexture2D::3857458260672687392::1712870481::1713029653::1::::<><>::
+README.md::TextFile::-1::1712870481::0::1::::<><>::
+Main.gd::GDScript::-1::1713131280::0::1::::<>Node<>::
+::res://Enemy/::1713029602
+Enemy.tscn::PackedScene::8672174569543730106::1713029602::0::1::::<><>::
+::res://Items/::1713132466
+>>>>>>> Stashed changes
 Anvil.png::CompressedTexture2D::6059398276929381473::1713111749::1713111749::1::::<><>::
 Axe.png::CompressedTexture2D::5318699760027118076::1712969972::1712969972::1::::<><>::
 BattleAxe.png::CompressedTexture2D::6084286955834851409::1712969972::1712969972::1::::<><>::
@@ -13,8 +23,13 @@ Broadsword.png::CompressedTexture2D::2753663197408281354::1712969972::1712969972
 Campfire.png::CompressedTexture2D::3974694507413462821::1713111749::1713111749::1::::<><>::
 Coal.png::CompressedTexture2D::770581856623174834::1713111749::1713111749::1::::<><>::
 Fiber.png::CompressedTexture2D::1201308230712434420::1713111749::1713111749::1::::<><>::
+<<<<<<< Updated upstream
 Item.gd::GDScript::-1::1713111760::0::1::::Item<>StaticBody2D<>::
 Item.tscn::PackedScene::3291040976671671625::1713111696::0::1::::<><>::res://Items/Item.gd
+=======
+Item.gd::GDScript::-1::1713132466::0::1::::Item<>StaticBody2D<>::
+Item.tscn::PackedScene::3291040976671671625::1713112855::0::1::::<><>::res://Items/Item.gd
+>>>>>>> Stashed changes
 Knife.png::CompressedTexture2D::43607204566684079::1712969972::1712969972::1::::<><>::
 Mallet.png::CompressedTexture2D::6086667485127198790::1712969972::1712969972::1::::<><>::
 Pickaxe.png::CompressedTexture2D::1598001965831525502::1713111749::1713111749::1::::<><>::
@@ -23,6 +38,7 @@ Spike.png::CompressedTexture2D::2622011546642540756::1713111749::1713111749::1::
 Stone.png::CompressedTexture2D::2481239302320973518::1713060245::1713060245::1::::<><>::
 Sword.png::CompressedTexture2D::6619925280461331951::1712969972::1712969972::1::::<><>::
 Wood.png::CompressedTexture2D::8095651298183058283::1713060245::1713060245::1::::<><>::
+<<<<<<< Updated upstream
 ::res://Player/::1713111760
 Player.gd::GDScript::-1::1713111760::0::1::::Player<>CharacterBody2D<>::
 Player.png::CompressedTexture2D::3280975321824624816::1712958117::1712958117::1::::<><>::
@@ -48,6 +64,34 @@ World.tscn::PackedScene::6962945964063508881::1713111760::0::1::::<><>::res://Wo
 ::res://World/Campfire/::1713111749
 Campfire.gd::GDScript::-1::1713111749::0::1::::Campfire<>Node2D<>::
 Campfire.tscn::PackedScene::5196453127589966706::1713111749::0::1::::<><>::res://World/Campfire/Campfire.gd<>uid://dbkanegqm3qo6::::res://World/Campfire/light.jpg
+=======
+::res://Player/::1713134184
+Player.gd::GDScript::-1::1713131425::0::1::::Player<>CharacterBody2D<>::
+Player.png::CompressedTexture2D::3280975321824624816::1712958117::1712958117::1::::<><>::
+Player.tscn::PackedScene::3825796640497215369::1713134184::0::1::::<><>::res://Player/Player.gd<>uid://bm0lgi6tattmu::::res://Player/Player.png<>uid://bfxab456xhfbh::::res://UI/HealthBarEmpty.png<>uid://b8fi061eplwbr::::res://UI/HealthBarFull.png<>uid://cjxqb8wmyd0sm::::res://UI/CraftingMenu.tscn
+::res://UI/::1713134184
+CraftingMenu.gd::GDScript::-1::1713134163::0::1::::<>Panel<>::
+CraftingMenu.tscn::PackedScene::5452996673983733228::1713134184::0::1::::<><>::res://UI/CraftingMenu.gd
+CraftingMenuButton.tscn::PackedScene::8639099664289505162::1713134184::0::1::::<><>::res://UI/CraftingMenuButton.gd
+HealthBarEmpty.png::CompressedTexture2D::2784848946981344197::1713066819::1713066819::1::::<><>::
+HealthBarFull.png::CompressedTexture2D::4713506461899236563::1713066819::1713066819::1::::<><>::
+InventorySlot.tscn::PackedScene::716489429817324330::1713130048::0::1::::<><>::
+InventorySlotButtonGroup.tres::ButtonGroup::4429029227883556274::1713060245::0::1::::<><>::
+CraftingIngredientsPanel.tscn::PackedScene::1354170644575111889::1713134184::0::1::::<><>::res://UI/CraftingIngredientsPanel.gd
+CraftingIngredientInfo.tscn::PackedScene::3568566354642621075::1713134184::0::1::::<><>::uid://dvc3yd6v4ivf3::::res://UI/CraftingMenuButton.tscn
+CraftingIngredientsPanel.gd::GDScript::-1::1713134182::0::1::::<>PanelContainer<>::
+CraftingMenuButton.gd::GDScript::-1::1713134123::0::1::::<>Button<>::
+::res://World/::1713134169
+Campfire.png::CompressedTexture2D::42631607193231467::1713111749::1713111749::1::::<><>::
+Noise.jpg::CompressedTexture2D::6586914083203264016::1713134186::1713134188::1::::<><>::
+RiverNoise.jpg::CompressedTexture2D::8340017909101989022::1713134186::1713134188::1::::<><>::
+tilemap_1.png::CompressedTexture2D::2542160813214181187::1713111749::1713063634::1::::<><>::
+World.gd::GDScript::-1::1713111904::0::1::::<>Node2D<>::
+World.tscn::PackedScene::6962945964063508881::1713133061::0::1::::<><>::res://World/World.gd<>uid://burikultpcsxt::::res://Player/Player.tscn<>uid://bchpat4hksak6::::res://World/tilemap_1.png<>uid://cgbg3akvy8peg::::res://World/Campfire/Campfire.tscn<>uid://bm5g71pmk2l0t::::res://Items/Item.tscn
+::res://World/Campfire/::1713112855
+Campfire.gd::GDScript::-1::1713111749::0::1::::Campfire<>Node2D<>::
+Campfire.tscn::PackedScene::5196453127589966706::1713112855::0::1::::<><>::res://World/Campfire/Campfire.gd<>uid://dbkanegqm3qo6::::res://World/Campfire/light.jpg
+>>>>>>> Stashed changes
 light.jpg::CompressedTexture2D::7250118107685046363::1713029602::1713029602::1::::<><>::
 ::res://World/Object/::1713060245
 Object.gd::GDScript::-1::1713060245::0::1::::<>StaticBody2D<>::

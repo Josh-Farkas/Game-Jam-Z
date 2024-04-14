@@ -4,11 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bm0lgi6tattmu" path="res://Player/Player.png" id="2_mvvfb"]
 [ext_resource type="Texture2D" uid="uid://bfxab456xhfbh" path="res://UI/HealthBarEmpty.png" id="3_cp1gc"]
 [ext_resource type="Texture2D" uid="uid://b8fi061eplwbr" path="res://UI/HealthBarFull.png" id="4_5ojiy"]
-<<<<<<< Updated upstream
-[ext_resource type="PackedScene" uid="uid://bc6v22afcg2dd" path="res://UI/CraftingMenu.tscn" id="5_yhr4y"]
-=======
 [ext_resource type="PackedScene" uid="uid://cjxqb8wmyd0sm" path="res://UI/CraftingMenu.tscn" id="5_ekbtk"]
->>>>>>> Stashed changes
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_er2f2"]
 size = Vector2(13, 14)
@@ -251,6 +247,7 @@ radius = 4.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_kqll7")
+speed = null
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(0, 1.90735e-06)
@@ -328,26 +325,12 @@ rounded = true
 texture_under = ExtResource("3_cp1gc")
 texture_progress = ExtResource("4_5ojiy")
 
-<<<<<<< Updated upstream
-[node name="CraftingMenu" parent="Control" instance=ExtResource("5_yhr4y")]
-=======
 [node name="HBoxContainer" type="HBoxContainer" parent="Control"]
->>>>>>> Stashed changes
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-<<<<<<< Updated upstream
-offset_left = -250.0
-offset_top = -250.0
-offset_right = 250.0
-offset_bottom = 250.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-=======
 offset_left = -20.0
 offset_top = -20.0
 offset_right = 20.0
@@ -357,7 +340,6 @@ grow_vertical = 2
 
 [node name="CraftingMenu" parent="Control/HBoxContainer" instance=ExtResource("5_ekbtk")]
 layout_mode = 2
->>>>>>> Stashed changes
 
 [node name="UseCooldown" type="Timer" parent="."]
 wait_time = 0.5

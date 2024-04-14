@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=8 format=3 uid="uid://khcqgrxr2ba5"]
 
 [ext_resource type="Texture2D" uid="uid://b67dyqxp5jh6v" path="res://UI/HotbarNormal.png" id="1_nnn5j"]
@@ -12,6 +13,60 @@ texture = ExtResource("2_6dc78")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t542h"]
 texture = ExtResource("3_ewj76")
+=======
+[gd_scene load_steps=5 format=3 uid="uid://khcqgrxr2ba5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dlkem"]
+bg_color = Color(0.611765, 0.435294, 0.27451, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.411765, 0.286275, 0.168627, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3qc2x"]
+bg_color = Color(0.694118, 0.494118, 0.313726, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.498039, 0.345098, 0.203922, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pwd0c"]
+bg_color = Color(1, 0.839216, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.588235, 0.415686, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+>>>>>>> Stashed changes
 
 [sub_resource type="LabelSettings" id="LabelSettings_gchoh"]
 line_spacing = 0.0
@@ -20,6 +75,7 @@ outline_size = 12
 outline_color = Color(0, 0, 0, 1)
 
 [node name="InventorySlot" type="Button"]
+<<<<<<< Updated upstream
 custom_minimum_size = Vector2(64, 64)
 offset_right = 64.0
 offset_bottom = 64.0
@@ -27,6 +83,15 @@ focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxTexture_c61qc")
 theme_override_styles/hover = SubResource("StyleBoxTexture_6hy5q")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_t542h")
+=======
+custom_minimum_size = Vector2(48, 48)
+offset_right = 64.0
+offset_bottom = 64.0
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_dlkem")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3qc2x")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pwd0c")
+>>>>>>> Stashed changes
 toggle_mode = true
 icon_alignment = 1
 expand_icon = true

@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bq3v1ccabbrup"]
+
+[ext_resource type="PackedScene" uid="uid://dvc3yd6v4ivf3" path="res://UI/CraftingMenuButton.tscn" id="1_prihr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nungi"]
+line_spacing = 0.0
+font_size = 24
+
+[node name="CraftingIngredientInfo" type="HBoxContainer"]
+offset_right = 65.0
+offset_bottom = 48.0
+theme_override_constants/separation = 16
+
+[node name="IngredientIcon" parent="." instance=ExtResource("1_prihr")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="IngredientInfo" type="Label" parent="."]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_nungi")
