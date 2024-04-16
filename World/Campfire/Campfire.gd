@@ -1,10 +1,12 @@
 extends Node2D
 class_name Campfire
 
+@onready var world: World = get_tree().get_first_node_in_group("World")
+
 var colliding: bool = false
 
 var max_fuel: float = 100.0
-var fuel: float = 50
+var fuel: float = 100
 var fuel_loss_rate: float = .5 # per second
 
 var hovered: bool = false
@@ -19,7 +21,7 @@ func _process(delta):
 		fuel -= fuel_loss_rate * delta
 		fuel = max(0, fuel)
 		#print(fuel)
-		$PointLight2D.energy = fuel / 200
+		$PointLight2D.energy = fuel / 100 * ((sin(world.time + PI) + 1.0) / 2.0)
 
 func add_fuel(amount):
 	fuel = min(fuel + amount, max_fuel)

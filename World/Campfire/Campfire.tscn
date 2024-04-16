@@ -8,5 +8,5 @@ script = ExtResource("1_8smp4")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(3.16, 3)
-color = Color(1, 0.215686, 0.0392157, 1)
+color = Color(1, 0.705882, 0.368627, 1)
 texture = ExtResource("3_tijdb")

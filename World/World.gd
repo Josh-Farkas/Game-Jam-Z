@@ -1,4 +1,5 @@
 extends Node2D
+class_name World
 
 const CHUNK_SIZE = Vector2(32*16, 20*16)
 
@@ -35,6 +36,11 @@ var seed: int = 1
 var forest_noise := FastNoiseLite.new()
 var river_noise := FastNoiseLite.new()
 var ore_noise := FastNoiseLite.new()
+
+var time: float = 0
+const DAY_SPEED: float = .05
+const NIGHT_COLOR := Color("091d3a")
+const DAY_COLOR := Color("ffffff")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -79,6 +85,12 @@ func _process(delta):
 	if new_chunk != player_chunk:
 		generate_chunks(new_chunk)
 		player_chunk = new_chunk
+		
+	# day night cycle
+	time += delta * DAY_SPEED
+	$CanvasModulate.color = NIGHT_COLOR.lerp(DAY_COLOR, (sin(time) + 1.0) / 2.0)
+	time = fmod(time, 2*PI)
+	print(time)
 
 
 func destroy(tile_pos: Vector2i):
@@ -109,8 +121,10 @@ func generate_chunks(center_pos: Vector2i):
 				generated_chunks[chunk_pos] = true
 				
 
-func spawn_obj(tile_coords: Vector2i, pos: Vector2, layer:int = 1, alt: int = 0):
+func spawn_obj(tile_coords: Vector2i, pos: Vector2, layer:int = 1, has_collision = true, alt: int = 0):
+	if has_collision: tilemap.set_cell(0, tilemap.local_to_map(pos), 0, TILEMAP_COORDS.Snow, 1)
 	tilemap.set_cell(layer, tilemap.local_to_map(pos), 0, tile_coords, alt)
+
 
 
 func generate_objects(size: Vector2, offset: Vector2i, densities: Dictionary, tile_size: int = 16, forest_scale: float = 3, river_scale: float = 20, ore_scale: float = 5):
@@ -123,10 +137,10 @@ func generate_objects(size: Vector2, offset: Vector2i, densities: Dictionary, ti
 			var ore_odds: float = -ore_noise.get_noise_2d(x / ore_scale, y / ore_scale)
 			
 			if abs(river_odds) < .1: # River thickness
-				spawn_obj(TILEMAP_COORDS.Water, pos, 0)
+				spawn_obj(TILEMAP_COORDS.Water, pos, 0, false)
 				
 			else: # not a water tile
-				spawn_obj(TILEMAP_COORDS.Snow, pos, 0)
+				spawn_obj(TILEMAP_COORDS.Snow, pos, 0, false)
 
 				if forest_odds * densities.Tree >= randf():
 					if randf() < .95: spawn_obj(TILEMAP_COORDS.Tree, pos)
@@ -136,11 +150,9 @@ func generate_objects(size: Vector2, offset: Vector2i, densities: Dictionary, ti
 				elif forest_odds * densities.Coal >= randf():
 					spawn_obj(TILEMAP_COORDS.Coal, pos)
 				elif (1 - forest_odds) * densities.Grass >= randf():
-					spawn_obj(TILEMAP_COORDS.Grass, pos, 1, randi_range(0, 1))
+					spawn_obj(TILEMAP_COORDS.Grass, pos, 1, false, randi_range(0, 1))
 					# generate ore, go rarest -> least rare
 				elif ore_odds >= 1 - densities.Uranium and randf() > .5:
 					spawn_obj(TILEMAP_COORDS.Uranium, pos)
 				elif ore_odds >= 1 - densities.Iron and randf() > .5:
 					spawn_obj(TILEMAP_COORDS.Iron, pos)
-					print("Iron Spawned At ", pos)
-					print("Player Pos, ", player.position)

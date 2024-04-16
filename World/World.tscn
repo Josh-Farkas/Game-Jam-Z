@@ -1,12 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://c6g5x5mcbtw30"]
+[gd_scene load_steps=15 format=3 uid="uid://c6g5x5mcbtw30"]
 
 [ext_resource type="Script" path="res://World/World.gd" id="1_rmncd"]
 [ext_resource type="PackedScene" uid="uid://burikultpcsxt" path="res://Player/Player.tscn" id="1_u5x5s"]
 [ext_resource type="Texture2D" uid="uid://bchpat4hksak6" path="res://World/tilemap_1.png" id="3_6lex6"]
 [ext_resource type="PackedScene" uid="uid://cgbg3akvy8peg" path="res://World/Campfire/Campfire.tscn" id="4_pc6qk"]
 [ext_resource type="PackedScene" uid="uid://bm5g71pmk2l0t" path="res://Items/Item.tscn" id="5_cwolc"]
+[ext_resource type="PackedScene" uid="uid://dvs4pibxm5443" path="res://Enemy/Enemy.tscn" id="6_2bsnp"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_1plx6"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_2j70t"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
@@ -16,7 +17,7 @@ agent_radius = 0.0
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_gn3yt"]
 source_geometry_group_name = &"navigation_polygon_source_group"
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_iir8r"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_l53rq"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
@@ -30,12 +31,15 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8
 source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 0.0
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_aty0p"]
-vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_d44ua"]
+vertices = PackedVector2Array(4, 4, -4, 4, -4, -4, 4, -4)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ue6dt"]
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_shbi4"]
 texture = ExtResource("3_6lex6")
@@ -47,7 +51,7 @@ separation = Vector2i(1, 1)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_1/angular_velocity = 0.0
-0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1plx6")
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_2j70t")
 0:0/1 = 1
 0:0/1/z_index = -1
 0:0/1/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -69,7 +73,7 @@ separation = Vector2i(1, 1)
 0:2/0/y_sort_origin = 6
 0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:2/0/physics_layer_0/angular_velocity = 0.0
-0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0, 8, 0, 8, 8, -8, 8)
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6, 0, 6, 0, 6, 8, -6, 8)
 0:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 0:2/0/physics_layer_1/angular_velocity = 0.0
 0:2/0/custom_data_1 = "Wood"
@@ -80,7 +84,7 @@ separation = Vector2i(1, 1)
 1:2/0/y_sort_origin = 6
 1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:2/0/physics_layer_0/angular_velocity = 0.0
-1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0, 8, 0, 8, 8, -8, 8)
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6, 0, 6, 0, 6, 8, -6, 8)
 1:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 1:2/0/physics_layer_1/angular_velocity = 0.0
 1:2/0/custom_data_1 = "Wood"
@@ -113,7 +117,7 @@ separation = Vector2i(1, 1)
 3:1/0/y_sort_origin = 6
 3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:1/0/physics_layer_0/angular_velocity = 0.0
-3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0, 8, 0, 8, 8, -8, 8)
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6, 0, 6, 0, 6, 8, -6, 8)
 3:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 3:1/0/physics_layer_1/angular_velocity = 0.0
 3:1/0/custom_data_0 = "Craft"
@@ -134,7 +138,7 @@ separation = Vector2i(1, 1)
 1:0/0/y_sort_origin = 6
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0, 8, 0, 8, 8, -8, 8)
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6, 0, 6, 0, 6, 8, -6, 8)
 1:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_1/angular_velocity = 0.0
 1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_gn3yt")
@@ -146,7 +150,7 @@ separation = Vector2i(1, 1)
 1:3/0/y_sort_origin = 6
 1:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:3/0/physics_layer_0/angular_velocity = 0.0
-1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0, 8, 0, 8, 8, -8, 8)
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6, 0, 6, 0, 6, 8, -6, 8)
 1:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 1:3/0/physics_layer_1/angular_velocity = 0.0
 1:3/0/custom_data_1 = "Coal"
@@ -159,7 +163,7 @@ separation = Vector2i(1, 1)
 2:0/0/y_sort_origin = 6
 2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:0/0/physics_layer_0/angular_velocity = 0.0
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0, 8, 0, 8, 8, -8, 8)
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6, 0, 6, 0, 6, 8, -6, 8)
 2:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 2:0/0/physics_layer_1/angular_velocity = 0.0
 2:0/0/custom_data_1 = "Wood"
@@ -175,7 +179,7 @@ separation = Vector2i(1, 1)
 0:4/0/y_sort_origin = 6
 0:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:4/0/physics_layer_0/angular_velocity = 0.0
-0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0, 8, 0, 8, 8, -8, 8)
+0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6, 0, 6, 0, 6, 8, -6, 8)
 0:4/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 0:4/0/physics_layer_1/angular_velocity = 0.0
 0:4/0/custom_data_0 = "Fuel"
@@ -203,6 +207,7 @@ separation = Vector2i(1, 1)
 5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 5:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 5:1/0/physics_layer_1/angular_velocity = 0.0
+5:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_ue6dt")
 5:1/0/custom_data_1 = "Spike"
 5:1/0/custom_data_2 = [1, 1]
 5:1/0/custom_data_3 = "Any"
@@ -211,7 +216,7 @@ separation = Vector2i(1, 1)
 2:3/0/y_sort_origin = 6
 2:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:3/0/physics_layer_0/angular_velocity = 0.0
-2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0, 8, 0, 8, 8, -8, 8)
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6, 0, 6, 0, 6, 8, -6, 8)
 2:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 2:3/0/physics_layer_1/angular_velocity = 0.0
 2:3/0/custom_data_1 = "Iron"
@@ -222,7 +227,7 @@ separation = Vector2i(1, 1)
 3:3/0/y_sort_origin = 6
 3:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:3/0/physics_layer_0/angular_velocity = 0.0
-3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0, 8, 0, 8, 8, -8, 8)
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6, 0, 6, 0, 6, 8, -6, 8)
 3:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 3:3/0/physics_layer_1/angular_velocity = 0.0
 3:3/0/custom_data_1 = "Uranium"
@@ -251,7 +256,7 @@ separation = Vector2i(1, 1)
 3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 3:0/0/physics_layer_1/angular_velocity = 0.0
-3:0/0/navigation_layer_1/polygon = SubResource("NavigationPolygon_iir8r")
+3:0/0/navigation_layer_1/polygon = SubResource("NavigationPolygon_l53rq")
 3:0/0/custom_data_5 = true
 3:0/1 = 1
 3:0/1/z_index = -1
@@ -268,7 +273,7 @@ separation = Vector2i(1, 1)
 3:2/0/physics_layer_0/angular_velocity = 0.0
 3:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 3:2/0/physics_layer_1/angular_velocity = 0.0
-3:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_aty0p")
+3:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_d44ua")
 3:2/0/custom_data_1 = "Bridge"
 3:2/0/custom_data_2 = [1, 1]
 3:2/0/custom_data_3 = "Axe"
@@ -331,3 +336,9 @@ type = "Pickaxe"
 
 [node name="Player" parent="." instance=ExtResource("1_u5x5s")]
 position = Vector2(-8, 8)
+
+[node name="Enemy" parent="." instance=ExtResource("6_2bsnp")]
+position = Vector2(63, -26)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.0235294, 0.0352941, 0.0705882, 1)
