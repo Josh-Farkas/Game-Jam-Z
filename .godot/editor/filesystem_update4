@@ -1,6 +1,6 @@
-res://World/World.tscn
-res://World/World.gd
 res://Player/Player.tscn
+res://Player/Player.gd
+res://World/World.tscn
 res://Items/Item.tscn
 res://World/Campfire/Campfire.tscn
-res://Player/Player.gd
+res://World/Campfire/Campfire.gd

@@ -9,9 +9,13 @@ class_name Player
 @onready var destroy_timer: Timer = $DestroyTimer
 @onready var scroll_timer: Timer = $ScrollTimer
 
-const INV_SIZE = 10
-const PLACE_RANGE = 100
-const TOOL_USE_RANGE = 50
+const INV_SIZE: int = 10
+const PLACE_RANGE: int = 100
+const TOOL_USE_RANGE: int = 50
+const HEAT_LOSS_RATE: float = 2 # per second
+const HEAT_GAIN_RATE: float = .03
+const MAX_HEAT_GAIN: float = 5.0 # per second
+const HEAT_TICK_RATE: int = 5 # num frames per tick
 
 @export var speed = 100
 var speed_modifier: int = 1
@@ -19,11 +23,12 @@ var direction: Vector2 = Vector2.ZERO
 
 var inventory: Array = []
 var current_slot: int
-
 var health: int = 100
+var heat: float = 100
+var heat_loss_modifier: float = 1.0
 
 var destroying_tile_pos: Vector2i = Vector2i.ZERO
-
+var frame: int = 0
 
 func _ready():
 	animation_tree.active = true
@@ -42,11 +47,20 @@ func _physics_process(delta):
 	direction = Input.get_vector("left", "right", "up", "down").normalized()
 	velocity = direction * speed * speed_modifier
 	
+	if frame % HEAT_TICK_RATE == 0:
+		heat -= HEAT_LOSS_RATE * heat_loss_modifier * HEAT_TICK_RATE * delta
+		# Heat calculations, sums fuel-squared distance to all campfires and does some other math to make it balanced
+		heat += clamp(HEAT_GAIN_RATE * get_tree().get_nodes_in_group("Campfire").map(func(c): return max(0, 100 * c.fuel - global_position.distance_squared_to(c.global_position)) / 10).reduce(func(d, c): return c + d) * HEAT_TICK_RATE  * delta, 0, MAX_HEAT_GAIN)
+		heat = clamp(heat, 0, 100)
+		print(heat)
+	
 	if not destroy_timer.is_stopped() and get_tilemap_mouse_position() != destroying_tile_pos and Input.is_action_pressed("left_click"):
 		destroy_timer.stop()
 
 	move_and_slide()
 	update_animation()
+	frame += 1
+	frame %= HEAT_TICK_RATE
 	
 
 func _input(event):
