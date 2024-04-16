@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dq2742g22q8ak"
-path="res://.godot/imported/RiverNoise.jpg-ebd459a88d75267a2068bba74e86107a.ctex"
+uid="uid://dqwfd7pf5gdkb"
+path="res://.godot/imported/RiverNoise.jpg-43d4a397028261ff9411ce46916cabfb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://World/RiverNoise.jpg"
-dest_files=["res://.godot/imported/RiverNoise.jpg-ebd459a88d75267a2068bba74e86107a.ctex"]
+source_file="res://World/NoiseImages/RiverNoise.jpg"
+dest_files=["res://.godot/imported/RiverNoise.jpg-43d4a397028261ff9411ce46916cabfb.ctex"]
 
 [params]
 

@@ -87,7 +87,6 @@ separation = Vector2i(1, 1)
 1:2/0/custom_data_2 = [1, 2]
 1:2/0/custom_data_3 = "Axe"
 1:2/0/custom_data_4 = 0.75
-2:2/next_alternative_id = 2
 2:2/0 = 0
 2:2/0/z_index = -1
 2:2/0/y_sort_origin = 6
@@ -99,16 +98,6 @@ separation = Vector2i(1, 1)
 2:2/0/custom_data_2 = [0, 1]
 2:2/0/custom_data_3 = "Any"
 2:2/0/custom_data_4 = 0.75
-2:2/1 = 1
-2:2/1/flip_h = true
-2:2/1/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:2/1/physics_layer_0/angular_velocity = 0.0
-2:2/1/physics_layer_1/linear_velocity = Vector2(0, 0)
-2:2/1/physics_layer_1/angular_velocity = 0.0
-2:2/1/custom_data_1 = "Fiber"
-2:2/1/custom_data_2 = [1, 1]
-2:2/1/custom_data_3 = "Any"
-2:2/1/custom_data_4 = 0.75
 3:1/0 = 0
 3:1/0/y_sort_origin = 6
 3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -156,7 +145,7 @@ separation = Vector2i(1, 1)
 2:0/size_in_atlas = Vector2i(1, 2)
 2:0/0 = 0
 2:0/0/texture_origin = Vector2i(0, 9)
-2:0/0/y_sort_origin = 6
+2:0/0/y_sort_origin = 7
 2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:0/0/physics_layer_0/angular_velocity = 0.0
 2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0, 8, 0, 8, 8, -8, 8)
@@ -295,7 +284,6 @@ custom_data_layer_5/type = 1
 sources/0 = SubResource("TileSetAtlasSource_shbi4")
 
 [node name="World" type="Node2D" groups=["World"]]
-y_sort_enabled = true
 script = ExtResource("1_rmncd")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -310,6 +298,9 @@ layer_1/tile_data = PackedInt32Array()
 layer_2/name = "UI"
 layer_2/z_index = 1
 layer_2/tile_data = PackedInt32Array()
+
+[node name="Player" parent="TileMap" instance=ExtResource("1_u5x5s")]
+position = Vector2(-8, 8)
 
 [node name="Campfire" parent="." instance=ExtResource("4_pc6qk")]
 
@@ -328,6 +319,3 @@ amount = 5
 [node name="Item4" parent="." instance=ExtResource("5_cwolc")]
 position = Vector2(61, 42)
 type = "Pickaxe"
-
-[node name="Player" parent="." instance=ExtResource("1_u5x5s")]
-position = Vector2(-8, 8)

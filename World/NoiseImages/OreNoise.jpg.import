@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c030ros3xso37"
-path="res://.godot/imported/Noise.jpg-3d6d897117a2a96cf814cb55a6dfd680.ctex"
+uid="uid://cf7w1kfhg26w1"
+path="res://.godot/imported/OreNoise.jpg-1600c8bdef28b9d85169c81f9c34a0ab.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://World/Noise.jpg"
-dest_files=["res://.godot/imported/Noise.jpg-3d6d897117a2a96cf814cb55a6dfd680.ctex"]
+source_file="res://World/NoiseImages/OreNoise.jpg"
+dest_files=["res://.godot/imported/OreNoise.jpg-1600c8bdef28b9d85169c81f9c34a0ab.ctex"]
 
 [params]
 

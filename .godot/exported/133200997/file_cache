@@ -1,0 +1,8 @@
+res://Enemy/Enemy.tscn::d07e20d154138edf86fd6c1f6a13ebba::1713129116::res://.godot/exported/133200997/export-27fe6323443605a8c5c7592bfef44e0f-Enemy.scn
+res://Items/Item.tscn::52a519faac352d439c1e1cbf389f83f8::1713238497::res://.godot/exported/133200997/export-80f183811d1023bac410cd87a206c0c5-Item.scn
+res://Player/Player.tscn::9fc8c75323b6aa59d4c602a4f42ed87d::1713238497::res://.godot/exported/133200997/export-48b487cb3fbab0e0d627d8f8de2ba1d9-Player.scn
+res://UI/InventorySlotButtonGroup.tres::289f60e59eeb008b133be2550143d39e::1713129116::res://.godot/exported/133200997/export-4fb5b8d4ab2158acd106b75835315f72-InventorySlotButtonGroup.res
+res://UI/inventory_slot.tscn::4cbf7a25098c7c75e742490f27582513::1713146407::res://.godot/exported/133200997/export-a4c33e39b73c70b6556bc825aa7091bf-inventory_slot.scn
+res://World/Campfire/Campfire.tscn::6897ed74458576cbf082acca6d34fbe3::1713238497::res://.godot/exported/133200997/export-2ed0df37a260386df7098f2311d7da1f-Campfire.scn
+res://World/Object/Object.tscn::81e0a1890b41cae791a49566bf3effc3::1713129116::res://.godot/exported/133200997/export-2b28f9a8a25704e89efebb1ebbfe69e9-Object.scn
+res://World/World.tscn::7ee22b7c41c3fb61c6e030c19f632ac6::1713238497::res://.godot/exported/133200997/export-de71c21559ba3535c3f0645ed0c93644-World.scn
