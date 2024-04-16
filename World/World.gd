@@ -18,7 +18,7 @@ const TILEMAP_COORDS := {
 var item_scn = preload("res://Items/Item.tscn")
 
 @onready var tilemap: TileMap = $TileMap
-@onready var player: CharacterBody2D = $Player
+@onready var player: CharacterBody2D = get_tree().get_first_node_in_group("Player")
 var player_chunk: Vector2i = Vector2i.ZERO
 
 var selection_coords = Vector2i.ZERO

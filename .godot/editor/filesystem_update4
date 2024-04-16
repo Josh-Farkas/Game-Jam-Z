@@ -2,5 +2,4 @@ res://World/World.tscn
 res://Player/Player.tscn
 res://Items/Item.tscn
 res://World/Campfire/Campfire.tscn
-res://Items/Item.gd
 res://World/World.gd
