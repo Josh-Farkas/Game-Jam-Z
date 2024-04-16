@@ -21,7 +21,8 @@ func _process(delta):
 		fuel -= fuel_loss_rate * delta
 		fuel = max(0, fuel)
 		#print(fuel)
-		$PointLight2D.energy = fuel / 100 * ((sin(world.time + PI) + 1.0) / 2.0)
+		# make light dim during the day and bright during night
+		$PointLight2D.energy = world.get_scaled_time(PI) * fuel / 100
 
 func add_fuel(amount):
 	fuel = min(fuel + amount, max_fuel)

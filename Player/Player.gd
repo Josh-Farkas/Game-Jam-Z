@@ -48,7 +48,7 @@ func _physics_process(delta):
 	velocity = direction * speed * speed_modifier
 	
 	if frame % HEAT_TICK_RATE == 0:
-		heat -= HEAT_LOSS_RATE * heat_loss_modifier * HEAT_TICK_RATE * delta
+		heat -= HEAT_LOSS_RATE * heat_loss_modifier * world.time * HEAT_TICK_RATE * delta
 		# Heat calculations, sums fuel-squared distance to all campfires and does some other math to make it balanced
 		heat += clamp(HEAT_GAIN_RATE * get_tree().get_nodes_in_group("Campfire").map(func(c): return max(0, 100 * c.fuel - global_position.distance_squared_to(c.global_position)) / 10).reduce(func(d, c): return c + d) * HEAT_TICK_RATE  * delta, 0, MAX_HEAT_GAIN)
 		heat = clamp(heat, 0, 100)

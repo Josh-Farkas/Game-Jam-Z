@@ -38,7 +38,7 @@ var river_noise := FastNoiseLite.new()
 var ore_noise := FastNoiseLite.new()
 
 var time: float = 0
-const DAY_SPEED: float = .05
+const DAY_SPEED: float = 1
 const NIGHT_COLOR := Color("091d3a")
 const DAY_COLOR := Color("ffffff")
 
@@ -86,12 +86,14 @@ func _process(delta):
 		generate_chunks(new_chunk)
 		player_chunk = new_chunk
 		
-	# day night cycle
+	# day night cycle: close to 0 or 2PI is day, close to PI is night
 	time += delta * DAY_SPEED
-	$CanvasModulate.color = NIGHT_COLOR.lerp(DAY_COLOR, (sin(time) + 1.0) / 2.0)
+	$CanvasModulate.color = NIGHT_COLOR.lerp(DAY_COLOR, get_scaled_time())
 	time = fmod(time, 2*PI)
 	print(time)
 
+func get_scaled_time(offset: float = 0):
+	return (sin(time + offset) + 1.0) / 2.0
 
 func destroy(tile_pos: Vector2i):
 	var data := tilemap.get_cell_tile_data(1, tile_pos)
