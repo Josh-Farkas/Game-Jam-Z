@@ -36,7 +36,7 @@ func _ready():
 	healthbar.value = health
 	
 	for i in INV_SIZE:
-		var slot = preload("res://UI/inventory_slot.tscn").instantiate()
+		var slot = preload("res://UI/ItemSlot.tscn").instantiate()
 		slot.button_group = preload("res://UI/InventorySlotButtonGroup.tres")
 		inventory_gui.add_child(slot)
 	
@@ -174,14 +174,14 @@ func _on_pickup_range_body_entered(body) -> void:
 			if inventory[slot] == null: 
 				inventory[slot] = body
 				inventory_gui.get_child(slot).icon = body.item_types[body.type]["Sprite"]
-				inventory_gui.get_child(slot).get_child(0).text = str(body.amount) if body.amount > 1 else ""
 				body.get_parent().remove_child(body)
+				set_stack_label(slot)
 				return
 			else:
 				var amount_to_fill = inventory[slot].max_stack - inventory[slot].amount
 				inventory[slot].change_amount(min(body.amount, amount_to_fill))
-				inventory_gui.get_child(slot).get_child(0).text = str(inventory[slot].amount) if inventory[slot].amount > 1 else ""
 				body.change_amount(-amount_to_fill)
+				set_stack_label(slot)
 	
 	body.get_parent().remove_child(body)
 
@@ -191,10 +191,14 @@ func set_current_slot(slot) -> void:
 
 func remove_item_from_inv(slot, amount) -> void:
 	inventory[slot].change_amount(-1)
+	set_stack_label(slot)
 	if inventory[slot].amount <= 0:
 		inventory[slot].queue_free()
 		inventory_gui.get_child(slot).icon = null
 		inventory[slot] = null
+
+func set_stack_label(slot):
+	inventory_gui.get_child(slot).get_child(0).text = str(inventory[slot].amount) if inventory[slot].amount > 1 else ""
 
 func _on_destroy_timer_timeout():
 	world.destroy(get_tilemap_mouse_position())

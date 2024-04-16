@@ -113,6 +113,8 @@ static var item_types: Dictionary = {
 @onready
 var player: CharacterBody2D = get_tree().get_first_node_in_group("Player")
 
+@onready var stack_label: Label = $StackLabel
+
 @export_category("Item Info")
 @export var type = "Axe"
 @export var amount = 1
@@ -165,6 +167,7 @@ func _on_pickup_area_body_exited(body):
 
 func set_amount(new_amount):
 	amount = new_amount
+	stack_label.text = str(amount) if amount > 1 else ""
 
 func change_amount(delta: int):
 	set_amount(amount + delta)

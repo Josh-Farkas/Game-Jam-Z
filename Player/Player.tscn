@@ -306,6 +306,7 @@ theme_override_constants/margin_bottom = 16
 
 [node name="Inventory" type="HBoxContainer" parent="Control/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 16
 
 [node name="MarginContainer2" type="MarginContainer" parent="Control"]
 anchors_preset = 1

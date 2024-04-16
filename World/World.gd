@@ -104,9 +104,9 @@ func destroy(tile_pos: Vector2i):
 		tilemap.set_cell(0, tile_pos, 0, Vector2.ZERO, 1)
 	var item: Item = item_scn.instantiate()
 	item.type = data.get_custom_data("Drops")
-	item.set_amount(randi_range(data.get_custom_data("DropAmount")[0], data.get_custom_data("DropAmount")[1]))
 	if item.amount == 0: return
 	drop_item(item, tilemap.map_to_local(tile_pos))
+	item.set_amount(randi_range(data.get_custom_data("DropAmount")[0], data.get_custom_data("DropAmount")[1]))
 
 
 func drop_item(item: Item, pos: Vector2):

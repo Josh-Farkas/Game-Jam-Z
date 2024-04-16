@@ -1,9 +1,13 @@
-res://Enemy/Enemy.tscn
-res://Enemy/Enemy.gd
 res://World/World.tscn
 res://Player/Player.tscn
 res://Items/Item.tscn
 res://World/Campfire/Campfire.tscn
-res://World/World.gd
+res://Enemy/Enemy.tscn
+res://UI/InventorySlot.tscn
 res://Player/Player.gd
-res://World/Campfire/Campfire.gd
+res://UI/ItemSlot.tscn
+res://UI/ItemSlotNormal.tres
+res://UI/ItemSlotHover.tres
+res://UI/ItemSlotPressed.tres
+res://Items/Item.gd
+res://World/World.gd
