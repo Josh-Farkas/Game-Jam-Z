@@ -1,5 +1,6 @@
-res://UI/CraftingIngredientInfo.tscn
-res://UI/ItemSlotPressed.tres
 res://UI/CraftingPanelButton.tscn
-res://UI/CraftingIngredientsPanel.tscn
-res://UI/CraftingIngredientsPanel.gd
+res://UI/ItemSlotPressed.tres
+res://UI/CraftingPanelButton.gd
+res://Player/Player.gd
+res://UI/CraftingPanel.gd
+res://UI/CraftingPanel.tscn

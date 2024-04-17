@@ -196,7 +196,7 @@ func set_current_slot(slot) -> void:
 	inventory_gui.get_child(slot).button_pressed = true
 
 func remove_item_from_inv(slot, amount) -> void:
-	inventory[slot].change_amount(-1)
+	inventory[slot].change_amount(-amount)
 	set_stack_label(slot)
 	if inventory[slot].amount <= 0:
 		inventory[slot].queue_free()

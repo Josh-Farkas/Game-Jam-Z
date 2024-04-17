@@ -39,6 +39,13 @@ func _on_visibility_changed():
 			child.queue_free()
 		return
 	
+	populate_grid(false)
+
+func populate_grid(reset):
+	if reset:
+		for child in crafting_buttons_container.get_children():
+			child.queue_free()
+	
 	for i in Main.item_recipes:
 		var slot = preload("res://UI/CraftingPanelButton.tscn").instantiate()
 		slot.type = i
