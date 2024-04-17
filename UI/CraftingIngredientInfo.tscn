@@ -4,7 +4,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_gi18c"]
 line_spacing = 0.0
-font_size = 24
+font_size = 14
 
 [node name="CraftingIngredientInfo" type="HBoxContainer"]
 offset_right = 40.0
