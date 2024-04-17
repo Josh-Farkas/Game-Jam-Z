@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://c03ecem8eogg3"]
+
+[ext_resource type="StyleBox" uid="uid://di7evw0rwn3ad" path="res://UI/ItemSlotNormal.tres" id="1_612mw"]
+[ext_resource type="StyleBox" uid="uid://dggfpvdy0mfc" path="res://UI/ItemSlotHover.tres" id="2_7ma12"]
+[ext_resource type="StyleBox" uid="uid://b1hktsbdkexc8" path="res://UI/ItemSlotPressed.tres" id="3_5dpo4"]
+[ext_resource type="Script" path="res://UI/CraftingPanelButton.gd" id="3_fraab"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qij8x"]
+bg_color = Color(0.466667, 0.32549, 0.196078, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.286275, 0.192157, 0.105882, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 20
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[node name="CraftingPanelButton" type="Button"]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 64.0
+offset_bottom = 64.0
+focus_mode = 0
+theme_override_styles/normal = ExtResource("1_612mw")
+theme_override_styles/hover = ExtResource("2_7ma12")
+theme_override_styles/pressed = ExtResource("3_5dpo4")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_qij8x")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("3_fraab")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

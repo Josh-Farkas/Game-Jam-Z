@@ -1,9 +1,10 @@
-[gd_scene load_steps=31 format=3 uid="uid://burikultpcsxt"]
+[gd_scene load_steps=32 format=3 uid="uid://burikultpcsxt"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_kqll7"]
 [ext_resource type="Texture2D" uid="uid://bm0lgi6tattmu" path="res://Player/Player.png" id="2_mvvfb"]
 [ext_resource type="Texture2D" uid="uid://bfxab456xhfbh" path="res://UI/HealthBarEmpty.png" id="3_cp1gc"]
 [ext_resource type="Texture2D" uid="uid://b8fi061eplwbr" path="res://UI/HealthBarFull.png" id="4_5ojiy"]
+[ext_resource type="PackedScene" uid="uid://ba4nipycxurj0" path="res://UI/CraftingPanel.tscn" id="5_exeb3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_er2f2"]
 size = Vector2(12, 5.5)
@@ -325,6 +326,23 @@ size_flags_vertical = 0
 rounded = true
 texture_under = ExtResource("3_cp1gc")
 texture_progress = ExtResource("4_5ojiy")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -54.0
+offset_top = -27.0
+offset_right = 54.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CraftingPanel" parent="Control/HBoxContainer" instance=ExtResource("5_exeb3")]
+layout_mode = 2
+type = null
 
 [node name="UseCooldown" type="Timer" parent="."]
 wait_time = 0.5

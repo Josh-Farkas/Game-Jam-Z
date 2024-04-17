@@ -1,115 +1,6 @@
 extends StaticBody2D
 class_name Item
 
-static var item_types: Dictionary = {
-	"Wood": {
-		"Sprite": preload("res://Items/Wood.png"),
-		"MaxStack": 20,
-		"Action": "None",
-		"Fuel": 10,
-	},
-	"Stone": {
-		"Sprite": preload("res://Items/Stone.png"),
-		"MaxStack": 20,
-		"Action": "None",
-	},
-	"Coal": {
-		"Sprite": preload("res://Items/Coal.png"),
-		"MaxStack": 20,
-		"Action": "None",
-		"Fuel": 25,
-	},
-	"Iron": {
-		"Sprite": preload("res://Items/Coal.png"),
-		"MaxStack": 20,
-		"Action": "None",
-	},
-	"Uranium": {
-		"Sprite": preload("res://Items/Coal.png"),
-		"MaxStack": 20,
-		"Action": "None",
-	},
-	"Fiber": {
-		"Sprite": preload("res://Items/Fiber.png"),
-		"MaxStack": 20,
-		"Action": "None",
-		"Fuel": 2,
-	},
-	"Anvil": {
-		"Sprite": preload("res://Items/Anvil.png"),
-		"MaxStack": 1,
-		"Action": "Place",
-		"TilePos": Vector2i(3, 1)
-	},
-	"Furnace": {
-		"Sprite": preload("res://Items/Anvil.png"),
-		"MaxStack": 1,
-		"Action": "Place",
-		"TilePos": Vector2i(6, 0)
-	},
-	"Campfire": {
-		"Sprite": preload("res://Items/Campfire.png"),
-		"MaxStack": 1,
-		"Action": "Place",
-		"TilePos": Vector2i(0, 4)
-	},
-	"Spike": {
-		"Sprite": preload("res://Items/Spike.png"),
-		"MaxStack": 1,
-		"Action": "Place",
-		"TilePos": Vector2i(5, 1)
-	},
-	"Bridge": {
-		"Sprite": preload("res://Items/Bridge.png"),
-		"MaxStack": 10,
-		"Action": "Place",
-		"TilePos": Vector2i(3, 2),
-		"PlaceableOnWater": true,
-	},
-	"Axe": {
-		"Sprite": preload("res://Items/Axe.png"),
-		"MaxStack": 1,
-		"Action": "Destroy",
-		"ToolType": "Axe",
-	},
-	"Pickaxe": {
-		"Sprite": preload("res://Items/Pickaxe.png"),
-		"MaxStack": 1,
-		"Action": "Destroy",
-		"ToolType": "Pickaxe",
-	},
-	"BattleAxe": {
-		"Sprite": preload("res://Items/BattleAxe.png"),
-		"MaxStack": 1,
-		"Action": "Attack",
-	},
-	"Broadsword": {
-		"Sprite": preload("res://Items/Broadsword.png"),
-		"MaxStack": 1,
-		"Action": "Attack",
-	},
-	"Knife": {
-		"Sprite": preload("res://Items/Knife.png"),
-		"MaxStack": 1,
-		"Action": "Attack",
-	},
-	"Mallet": {
-		"Sprite": preload("res://Items/Mallet.png"),
-		"MaxStack": 1,
-		"Action": "Attack",
-	},
-	"Shiv": {
-		"Sprite": preload("res://Items/Shiv.png"),
-		"MaxStack": 1,
-		"Action": "Attack",
-	},
-	"Sword": {
-		"Sprite": preload("res://Items/Sword.png"),
-		"MaxStack": 1,
-		"Action": "Attack",
-	},
-}
-
 @onready
 var player: CharacterBody2D = get_tree().get_first_node_in_group("Player")
 
@@ -135,7 +26,7 @@ func _ready():
 	set_amount(amount)
 
 func set_type(name: String) -> void:
-	var type: Dictionary = item_types[name]
+	var type: Dictionary = Main.item_types[name]
 	$Sprite2D.texture = type.Sprite
 	max_stack = type.MaxStack
 	action = type.Action

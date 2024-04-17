@@ -6,6 +6,7 @@ class_name Player
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var inventory_gui: HBoxContainer = $Control/MarginContainer/Inventory
 @onready var healthbar: TextureProgressBar = $Control/MarginContainer2/HealthBar
+@onready var crafting_panel: PanelContainer = $Control/HBoxContainer/CraftingPanel
 @onready var destroy_timer: Timer = $DestroyTimer
 @onready var scroll_timer: Timer = $ScrollTimer
 
@@ -63,26 +64,31 @@ func _physics_process(delta):
 	
 
 func _input(event):
-	if Input.is_action_just_pressed("dev_mode"):
-		$CollisionShape2D.disabled = true
-		speed = 500
-	if Input.is_action_just_pressed("left_click"):
-		use_item(inventory[current_slot])
-		
-	if Input.is_action_just_pressed("right_click"):
-		match get_hovered_cell_data("ClickAction"):
-			"Fuel": fuel()
-			"Craft": pass
-			"Break": pass
+	if not crafting_panel.visible:
+		if Input.is_action_just_pressed("dev_mode"):
+			$CollisionShape2D.disabled = true
+			speed = 500
+		if Input.is_action_just_pressed("left_click"):
+			use_item(inventory[current_slot])
+			
+		if Input.is_action_just_pressed("right_click"):
+			match get_hovered_cell_data("ClickAction"):
+				"Fuel": fuel()
+				"Craft": pass
+				"Break": pass
 
-	if Input.is_action_just_released("scroll_up") and scroll_timer.is_stopped():
-		set_current_slot(current_slot - 1 if current_slot > 0 else INV_SIZE - 1)
-		scroll_timer.start()
-	if Input.is_action_just_released("scroll_down") and scroll_timer.is_stopped():
-		set_current_slot(current_slot + 1 if current_slot < INV_SIZE - 1 else 0)
-		scroll_timer.start()
+		if Input.is_action_just_released("scroll_up") and scroll_timer.is_stopped():
+			set_current_slot(current_slot - 1 if current_slot > 0 else INV_SIZE - 1)
+			scroll_timer.start()
+		if Input.is_action_just_released("scroll_down") and scroll_timer.is_stopped():
+			set_current_slot(current_slot + 1 if current_slot < INV_SIZE - 1 else 0)
+			scroll_timer.start()
 	
-				
+	if Input.is_action_just_pressed("toggle_menu"):
+		crafting_panel.visible = not crafting_panel.visible
+		
+		for i in inventory_gui.get_children():
+			i.mouse_filter = Control.MOUSE_FILTER_IGNORE if crafting_panel.visible else Control.MOUSE_FILTER_STOP
 
 func use_item(item: Item) -> void:
 	print("Using: ", item)
@@ -173,7 +179,7 @@ func _on_pickup_range_body_entered(body) -> void:
 		if (slot != -1):
 			if inventory[slot] == null: 
 				inventory[slot] = body
-				inventory_gui.get_child(slot).icon = body.item_types[body.type]["Sprite"]
+				inventory_gui.get_child(slot).icon = Main.item_types[body.type]["Sprite"]
 				body.get_parent().remove_child(body)
 				set_stack_label(slot)
 				return

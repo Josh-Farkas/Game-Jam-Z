@@ -90,7 +90,7 @@ func _process(delta):
 	time += delta * DAY_SPEED
 	$CanvasModulate.color = NIGHT_COLOR.lerp(DAY_COLOR, get_scaled_time())
 	time = fmod(time, 2*PI)
-	print(time)
+	#print(time)
 
 func get_scaled_time(offset: float = 0):
 	return (sin(time + offset) + 1.0) / 2.0

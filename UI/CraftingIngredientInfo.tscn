@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbvjch8djuiiy"]
+
+[ext_resource type="PackedScene" uid="uid://c03ecem8eogg3" path="res://UI/CraftingPanelButton.tscn" id="1_w8aps"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gi18c"]
+line_spacing = 0.0
+font_size = 24
+
+[node name="CraftingIngredientInfo" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 16
+
+[node name="CraftingPanelButton" parent="." instance=ExtResource("1_w8aps")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_gi18c")
